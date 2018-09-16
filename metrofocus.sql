@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 15, 2018 at 04:42 PM
+-- Generation Time: Sep 16, 2018 at 07:37 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `accessories` (
 --
 
 INSERT INTO `accessories` (`id`, `image`, `name`, `brand`, `category`, `price`, `quantity`, `description`, `date_deleted`, `deleted`) VALUES
-(1, '19214.jpeg', 'Kodak EasyShare CX6230', 'Kodak', 'Battery Cover', 380.12, 20, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, maiores, ipsa. Eveniet tempore, tenetur sit dolores fugit voluptate delectus voluptates hic aliquid suscipit eaque quae cumque deserunt', NULL, 0);
+(1, '19214.jpeg', 'Kodak EasyShare CX6230', 'Kodak', 'Battery Cover', 380.12, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, maiores, ipsa. Eveniet tempore, tenetur sit dolores fugit voluptate delectus voluptates hic aliquid suscipit eaque quae cumque deserunt', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `parts` (
 
 INSERT INTO `parts` (`id`, `image`, `name`, `brand`, `category`, `price`, `quantity`, `description`, `date_deleted`, `deleted`) VALUES
 (1, '26927.jpeg', 'Fujifilm HS1', 'Fuji', 'Lens', 2462, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas corporis, harum repudiandae numquam reiciendis magnam non inventore voluptatem quo quos.', NULL, 0),
-(2, '310.jpeg', 'Nikon D600', 'Nikon', 'Card Slot', 465.72, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quibusdam possimus suscipit itaque mollitia nobis laboriosam, accusantium architecto eveniet, porro veniam nostrum a, corporis eos fa', NULL, 0);
+(2, '310.jpeg', 'Nikon D600', 'Nikon', 'Card Slot', 465.72, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quibusdam possimus suscipit itaque mollitia nobis laboriosam, accusantium architecto eveniet, porro veniam nostrum a, corporis eos fa', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -223,19 +223,16 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `status` varchar(255) NOT NULL DEFAULT 'Pending',
   `deleted` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reservation`
 --
 
 INSERT INTO `reservation` (`id`, `username`, `reservationdate`, `itemid`, `category`, `itemquantity`, `status`, `deleted`) VALUES
-(11, 'admin@gmail.com', '09/15/2018', 1, 'Parts', 4, 'Confirmed', 0),
-(12, 'admin@gmail.com', '09/15/2018', 2, 'Parts', 1, 'Confirmed', 0),
-(13, 'admin@gmail.com', '09/15/2018', 1, 'Accessories', 13, 'Confirmed', 0),
-(14, 'admin@gmail.com', '09/15/2018', 1, 'Parts', 2, 'Confirmed', 0),
-(15, 'admin@gmail.com', '09/15/2018', 1, 'Accessories', 17, 'Confirmed', 0),
-(16, 'admin@gmail.com', '09/15/2018', 2, 'Parts', 1, 'Pending', 0);
+(28, 'admin@gmail.com', '09/16/2018', 2, 'Parts', 2, 'Pending', 0),
+(29, 'admin@gmail.com', '09/16/2018', 1, 'Parts', 2, 'Pending', 0),
+(30, 'admin@gmail.com', '09/16/2018', 1, 'Accessories', 2, 'Pending', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
