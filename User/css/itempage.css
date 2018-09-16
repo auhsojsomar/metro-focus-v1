@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
+.container{
+    margin: 0 auto;
+    position: relative;
+}
+
+.reserve{
+    text-transform: uppercase;
+    background: #FF7100 !important;
+    color: #f3f4f5 !important;
+    width: 50%;
+}
+
+.reserve:hover{
+    background: #071425 !important;
+    color: #f3f4f5 !important;
+}
+
+.tab-content #descriptions{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 800;
+    margin-top: 5rem !important;
+}
+
+.tab-content h2{
+    color: #071425 !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+#pane-2{
+    font-family: 'Tahoma', sans-serif;
+    font-size: 1rem;
+}
+
+#pane-2 .table-wrapper{
+    margin-top: 1rem !important;
+}
