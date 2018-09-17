@@ -314,7 +314,7 @@ if($_COOKIE['role'] == 'Admin'){
                 $('#faqadd').click(function(){
                     $('#faqmodal').addClass('is-active');
                     $('#operation').val('Add');
-                    $('#faqtitle').val('Add FAQ');
+                    $('#faqtitle').html('Add FAQ');
                     clearall();
                 });
                 $('#cancel').click(function(){
@@ -354,7 +354,7 @@ if($_COOKIE['role'] == 'Admin'){
                             $('#answer').val(data.answer);
                             $('#user_id').val(id);
                             $('#operation').val('Edit');
-                            $('#faqtitle').val('Edit FAQ');
+                            $('#faqtitle').html('Edit FAQ');
                         }
                     });
                 });
