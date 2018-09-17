@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 16, 2018 at 07:37 AM
+-- Generation Time: Sep 17, 2018 at 01:27 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `deleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `brand` (`brand`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `brand`
@@ -137,10 +137,22 @@ INSERT INTO `category` (`id`, `category`, `date_deleted`, `deleted`) VALUES
 DROP TABLE IF EXISTS `faq`;
 CREATE TABLE IF NOT EXISTS `faq` (
   `id` int(150) NOT NULL AUTO_INCREMENT,
-  `question` varchar(250) NOT NULL,
-  `description` varchar(250) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL,
+  `date_deleted` varchar(255) DEFAULT NULL,
+  `deleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `question`, `answer`, `date_deleted`, `deleted`) VALUES
+(1, 'Why is my DSLR won\'t turn on retain charge?', 'The most common reason for your camera not turning on is that your battery is defunct or not in place properly.The first thing to do is to charge your battery then to make sure it\'s inserted properly into the compartment. You\'d be amazed how often we get people coming in with batteries that have just jolted slightly loose.Once you\'ve secured it in place, check your dials, buttons and memory cards. If they seem to be functioning and in the right spot, go ahead and press the power button. If this doesn\'t work, you might need to replace the battery, or it could be something more terminal so go to any camera repairing shop.', NULL, 0),
+(7, 'What should I do if I accidentally dropped my camera?', 'Firstly, take some deep breaths. Thereâ€™s nothing you can do about it now. When youâ€™ve stopped shaking from shock, start checking all the parts of your camera. Like the tip above, check the battery compartment, memory card slots, buttons, dials and body. If they look in order, go ahead and try the power button. Hopefully it starts without any issues. If nothing happens, you may want to take it into a camera shop so they can take a look inside the camera body.', NULL, 0),
+(8, 'My picture quality isnâ€™t great, it looks like it has spots or blobs on it.', 'The last thing you want to do is to take a perfect picture only to find it mired with dark spots or blobby patches. To avoid or remedy this, you need to work out if itâ€™s your lens or your sensor. You can test this by taking photos of a plain sheet of A4 paper with each your lenses. Upload them to your computer and if the spots are the same on every photo, it means itâ€™s your sensor. If the marks are constricted to one type of lens, try cleaning the lens head the right way, with accessories like air blowers and specialty lens cleaning tissues; cleaning with an inappropriate chemical or scratchy cloth can permanently damage the lens.', NULL, 0),
+(9, 'My camera isnâ€™t saving any photos or pictures, why is that?', 'Most likely this is an issue with your memory card, which could be full or corrupt or not inserted properly (generally, error messages will appear). The best tactic is to insert a different memory card into your camera and to try taking pictures with it. If it works, chances are itâ€™s your existing memory card thatâ€™s the problem. Note that some cameras also have a battery saving feature that might restrict photo saving so make sure your camera is charged first. If so, look closely for any irregularities on the card. A thumb print on the metal stripes could be the cause, as could a crack or scratch. Clean it and try again. If itâ€™s still not working, it could be that your cameraâ€™s firmware or software simply doesnâ€™t recognize it anymore so try inserting it into another card reader. Failing this, you should take the memory card to a camera repair shop to try and recover your photos.', NULL, 0);
 
 -- --------------------------------------------------------
 
