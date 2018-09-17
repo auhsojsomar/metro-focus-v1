@@ -128,6 +128,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </ul>
                                     </li>
                                     <li>
+                                        <a href="faq.php">
+                                            <i class="fal fa-question-circle"></i> FAQ
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -209,7 +214,7 @@ if($_COOKIE['role'] == 'Admin'){
                     <div class="modal-background"></div>
                         <div class="modal-card">
                             <header class="modal-card-head">
-                                <p class="modal-card-title">Appointment Details</p>
+                                <p class="modal-card-title" id="reservetitle">Appointment Details</p>
                             </header>
                             <section class="modal-card-body">
                                 <form method="POST" id="vfrom" name="vform">
@@ -284,6 +289,7 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#itemname').val(data.itemname);
                         $('#itemquantity').val(data.itemquantity);
                         $('#status').val(data.status);
+                        $('#reservetitle').html('Parts Reservation Details');
                     }
                 })
             });
@@ -342,6 +348,7 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#itemname').val(data.itemname);
                         $('#itemquantity').val(data.itemquantity);
                         $('#status').val(data.status);
+                        $('#reservetitle').html('Accessories Reservation Details');
                     }
                 })
             });

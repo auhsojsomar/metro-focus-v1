@@ -129,6 +129,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </ul>
                                     </li>
                                     <li>
+                                        <a href="faq.php">
+                                            <i class="fal fa-question-circle"></i> FAQ
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>

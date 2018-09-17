@@ -128,6 +128,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </ul>
                                     </li>
                                     <li>
+                                        <a href="faq.php">
+                                            <i class="fal fa-question-circle"></i> FAQ
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -558,6 +563,7 @@ if($_COOKIE['role'] == 'Admin'){
                     clear();
                     $('#clientmodal').addClass('is-active');
                     $('#operation').val('Add');
+                    $('#clienttitle').html('Add Client');
                 });
                 $('#cancel').click(function(){
                     $('#clientmodal').removeClass('is-active');
@@ -599,6 +605,7 @@ if($_COOKIE['role'] == 'Admin'){
                        $('#cnumber').val(data.cnumber);
                        // $('#password').val(data.password);
                        // $('#cpassword').val(data.password);
+                       $('#clienttitle').html('Edit Client');
                        $('#user_id').val(user_id);
                        $('#operation').val('Edit');
                     }

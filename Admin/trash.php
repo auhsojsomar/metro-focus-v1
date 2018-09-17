@@ -1,5 +1,4 @@
 <?php 
-//session_start();
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -126,6 +125,11 @@ if($_COOKIE['role'] == 'Admin'){
                                                 <a href="client.php"> Client</a>
                                             </li>
                                         </ul>
+                                    </li>
+                                    <li>
+                                        <a href="faq.php">
+                                            <i class="fal fa-question-circle"></i> FAQ
+                                        </a>
                                     </li>
                                     <li class="active">
                                         <a href="#">
@@ -282,6 +286,32 @@ if($_COOKIE['role'] == 'Admin'){
                                                 <section class="example">
                                                     <div class="table-responsive">
                                                         <table id="clienttable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 40%">Name</th>
+                                                                <th style="width: 43%">Date Deleted</th>
+                                                                <th style="width: 17%;text-align: center;">Action</th>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="section" style="padding-top:0px;margin-top: -70px;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="card-title-block">
+                                                    <h3 class="title">FAQ</h3>
+                                                </div>
+                                                <section class="example">
+                                                    <div class="table-responsive">
+                                                        <table id="faqtable" class="table table-bordered table-striped table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th style="width: 40%">Name</th>
@@ -693,6 +723,71 @@ if($_COOKIE['role'] == 'Admin'){
                                     })
                                     .then((value) => {
                                         dtclient.ajax.reload();
+                                    });
+                                }
+                                else{
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                });
+                var dtfaq = $('#faqtable').DataTable({
+                    "ajax":{
+                    url:"php/trash/faqtrash.php",
+                    type:"POST"
+                },
+                    "columnDefs":[
+                        {
+                            "targets":[1],
+                            "orderable":false,
+                        },
+                        {
+                            "targets":[0],
+                            "render":$.fn.dataTable.render.ellipsis(25),
+                        },
+                        {
+                            "targets":[0,1],
+                            "className":'dt-left',
+                        },
+                    ],
+                });
+                $(document).on('click','button[name="fq_restore"]',function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        url:'php/trash/faqrecover.php',
+                        method:'POST',
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            swal('Data Recovered','','success',{
+                                closeOnClickOutside:false,
+                            })
+                            .then((value) =>{
+                                dtfaq.ajax.reload();
+                            });
+                        }
+                    });
+                });
+                $(document).on('click','button[name="fq_delete"]',function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        url:'php/trash/faqdelete',
+                        method:'POST',
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                                dangerMode:true,
+                                buttons:true,
+                            })
+                            .then((value) => {
+                                if(value){
+                                    swal('Data Deleted','','success',{
+                                        closeOnClickOutside:false,
+                                    })
+                                    .then((value) => {
+                                        dtfaq.ajax.reload();
                                     });
                                 }
                                 else{

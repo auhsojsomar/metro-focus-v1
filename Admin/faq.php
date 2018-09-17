@@ -1,5 +1,6 @@
 <?php 
 //session_start();
+include '../User/includes/db.php';
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -40,7 +41,7 @@ if($_COOKIE['role'] == 'Admin'){
                                     </li>
                                     <li class="is-active">
                                         <a href="#">
-                                            Products
+                                            FAQ
                                         </a>
                                     </li>
                                 </ul>
@@ -54,7 +55,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <!-- <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div> -->
                                         <span class="name"> Admin </span>
                                     </a>
-                                   <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                         <a class="dropdown-item" href="../User/pages/profile.php">
                                             <i class="fa fa-user icon"></i> Profile </a>
                                         <a class="dropdown-item" href="#">
@@ -72,7 +73,7 @@ if($_COOKIE['role'] == 'Admin'){
                     <aside class="sidebar">
                         <div class="sidebar-container">
                             <div class="sidebar-header">
-                                <div class="brand">
+                               <div class="brand">
                                     <div style="text-align: center;margin-left: -30px;"><span style="font-size: 25px;font-weight: bold;">Metro</span><span style="font-size: 25px;color: #FF7100;font-weight:bold;">Focus</span></div>
                                 </div>
                             </div>
@@ -83,14 +84,14 @@ if($_COOKIE['role'] == 'Admin'){
                                             <i class="fal fa-home"></i> Dashboard
                                         </a>
                                     </li>
-                                    <li class="active open">
+                                    <li>
                                         <a href="">
                                             <i class="fal fa-camera-retro"></i> Products
                                             <i class="fa arrow"></i>
                                         </a>
                                         <ul class="sidebar-nav">
-                                            <li class="active">
-                                                <a href="#"> Brand</a>
+                                            <li>
+                                                <a href="brand.php"> Brand</a>
                                             </li>
                                             <li>
                                                 <a href="category.php"> Category</a>
@@ -127,8 +128,8 @@ if($_COOKIE['role'] == 'Admin'){
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="faq.php">
+                                    <li class="active">
+                                        <a href="#">
                                             <i class="fal fa-question-circle"></i> FAQ
                                         </a>
                                     </li>
@@ -143,12 +144,12 @@ if($_COOKIE['role'] == 'Admin'){
                     </aside>
                     <article class="content">
                         <div class="title-block">
-                            <h1 class="title"> Brand</h1>
-                            <button type="button" class="button is-success" id="brandadd">
+                            <h1 class="title"> FAQ</h1>
+                            <button type="button" class="button is-success" id="faqadd">
                                 <span class="icon is-small">
                                       <i class="fal fa-plus-circle"></i>
                                     </span>
-                                    <span> Add Brand</span>
+                                    <span> Add FAQ</span>
                             </button>
                         </div>
                         <section class="section" style="padding-top:0px;">
@@ -158,11 +159,12 @@ if($_COOKIE['role'] == 'Admin'){
                                         <div class="card-block">
                                             <section class="example">
                                                 <div class="table-responsive">
-                                                    <table id="brandtable" class="table table-bordered table-striped table-hover">
+                                                    <table id="faqtable" class="table table-bordered table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Brand Name</th>
-                                                            <th style="width: 15%;text-align: center;">Action</th>
+                                                            <th>Question</th>
+                                                            <th>Answer</th>
+                                                            <th style="text-align: center;width: 15%;">Action</th>
                                                     </thead>
                                                     <tbody></tbody>
                                                     </table>
@@ -178,24 +180,34 @@ if($_COOKIE['role'] == 'Admin'){
                     <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                     <div class="mobile-menu-handle"></div> 
                 </div>
-                <div class="modal" id="brandmodal">
+                <div class="modal" id="faqmodal">
                 <div class="modal-background"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <h1 class="modal-card-title" id="brandtitle">Add Brand</h1>
+                        <h1 class="modal-card-title" id="faqtitle">Add FAQ</h1>
                     </header>
                     <section class="modal-card-body">
                         <form method="POST" name="vform" id="vform" onsubmit="return Validate();">
                         <div class="field">
-                            <label class="label">Brand</label>
+                            <label class="label">Question</label>
                                 <div class="control has-icons-right">
-                                    <input class="input" id="brand" name="brand" placeholder="Brand Name">
+                                    <textarea maxlength="5000" class="input" id="question" name="question" placeholder="Question"></textarea>
                                         <span class="icon is-small is-right">
-                                            <i id="brandicon" class=""></i>
+                                            <i id="questionicon" class=""></i>
                                         </span>
-                                        <p class="help is-danger" id="brandmessage"></p>
+                                        <p class="help is-danger" id="questionmessage"></p>
                                 </div>
-                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Answer</label>
+                                <div class="control has-icons-right">
+                                    <textarea style="height: 200px;" maxlength="5000" class="input" id="answer" name="answer" placeholder="Answer"></textarea>
+                                        <span class="icon is-small is-right">
+                                            <i id="answericon" class=""></i>
+                                        </span>
+                                        <p class="help is-danger" id="answermessage"></p>
+                                </div>
+                        </div>
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-success" id="save" type="submit" name="btnSave">Save</button>
@@ -206,8 +218,6 @@ if($_COOKIE['role'] == 'Admin'){
                     </footer>
                 </div>
             </div>
-            </div>
-            
             <script src="js/jquery.min.js"></script>
             <script src="js/sweetalert.min.js"></script>
             <script src="js/vendor.js"></script>
@@ -215,206 +225,213 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/datatables.min.js"></script>
             <script src="js/ellipsis.js"></script>
             <script>
-
-            var dataTable = $('#brandtable').DataTable({
-                "order":[],
-                "ajax":{
-                url:"php/brand/brandfetch.php",
-                type:"POST"
-            },
-                "columnDefs":[
-                    {
-                        "targets":[1],
-                        "orderable":false,
-                    },
-                    {
-                        "targets":[0],
-                        "render":$.fn.dataTable.render.ellipsis(25),
-                    },
-                    {
-                        "targets":[0],
-                        "className":'dt-left',
-                    },
-                ],
-            });
-            $(document).on('click','button[name="update"]',function(){
-            var user_id = $(this).attr("id");
-            $.ajax({
-                url:"php/brand/brandfetchsingle.php",
-                method:"POST",
-                data:{user_id:user_id},
-                dataType:"json",
-                success:function(data)
-                {
-                    clear();
-                    $('#brandmodal').addClass('is-active');
-                    $('#brand').val(data.brand);
-                    $('#brandtitle').html('Edit Brand');
-                    $('#user_id').val(user_id);
-                    $('#operation').val("Edit");
+                function quevalid(){
+                    if($('#question').val() == ''){
+                        $('#question').addClass('is-danger');
+                        $('#questionmessage').html('Enter your question');
+                    }
+                    else{
+                        $('#question').removeClass('is-danger');
+                        $('#questionmessage').html('');
+                    }
                 }
-            })
-            });
-            $(document).on('click', 'button[name="delete"]', function(){
-                swal({
-                  title: "Are you sure you want to delete?",
-                  icon: "warning",
-                  buttons: true,
-                  dangerMode: true,
-                })
-                .then((willDelete) => {
-                  if (willDelete) {
-                    var user_id = $(this).attr("id");
-                    $.ajax({
-                        url:"php/brand/branddelete.php",
-                        method:"POST",
-                        data:{user_id:user_id},
-                        success:function(data)
-                        {
-                            swal({
-                                title:data,
-                                icon:'success',
-                                closeOnClickOutside:false,
-                            })
-                            .then((value) => {
-                                dataTable.ajax.reload();
+                function ansvalid(){
+                    if($('#answer').val() == ''){
+                        $('#answer').addClass('is-danger');
+                        $('#answermessage').html('Enter your answer');
+                    }
+                    else{
+                        $('#answer').removeClass('is-danger');
+                        $('#answermessage').html('');
+                    }
+                }
+                function validall(){
+                    if($('#question').val() != '' && $('#answer').val() != ''){
+                        if($('#operation').val() == 'Add'){
+                            var fr = $('#vform').serialize();
+                            $.ajax({
+                                url:'php/faq/faqadd.php',
+                                method:'POST',
+                                data:fr,
+                                success:function(data){
+                                    if(data == 'Success'){
+                                        $('#faqmodal').removeClass('is-active');
+                                        swal('Added Successfully','','success',{
+                                            closeOnClickOutside:false,
+                                        })
+                                        .then((value) => {
+                                            dataTable.ajax.reload();
+                                        });
+                                    }
+                                    else{
+                                        swal('Error','','error',{
+                                            closeOnClickOutside:false,
+                                        });
+                                    }
+                                }
                             });
                         }
-                    });
-                  } else {
-                    return false;
-                  }
-                });
-            });
-            var br = document.forms['vform']['brand'];
-            var br_error = document.getElementById('brandmessage');
-
-            function Validate() {
-              if (br.value == "") {
-                br_error.textContent = "Enter a Brand Name";
-                $("#brand").addClass("is-danger");
-                $("#brandicon").addClass("fas fa-exclamation-triangle");
-                br.focus();
-                return false;
-              }
-              else{
-                if($('#operation').val()=="Add"){
-                    var data = $('#brand').serialize();
-                    $.post('php/brand/brandunique.php', {'brand' : br.value}, function(exist){
-                        if(exist == "Not Exist"){
+                        if($('#operation').val() == 'Edit'){
+                            var fr = $('#vform').serialize();
                             $.ajax({
-                                url:'php/brand/brandadd.php',
+                                url:'php/faq/faqupdate.php',
                                 method:'POST',
-                                data:data,
-                                success:function(brand){
-                                    $('#brandmodal').removeClass('is-active');
-                                    swal('Added Successfully','','success',{
-                                        closeOnClickOutside:false,
-                                    })
-                                    .then((value) => {
-                                        dataTable.ajax.reload();
-                                    });
+                                data:fr,
+                                success:function(data){
+                                    if(data == 'Success'){
+                                        $('#faqmodal').removeClass('is-active');
+                                        swal('Edit Successfully','','success',{
+                                            closeOnClickOutside:false,
+                                        })
+                                        .then((value) => {
+                                            dataTable.ajax.reload();
+                                        });
+                                    }
+                                    else{
+                                        swal('Error','','error',{
+                                            closeOnClickOutside:false,
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+                function clearall(){
+                    $('#question').removeClass('is-danger');
+                    $('#questionmessage').html('');
+                    $('#question').val('');
+                    $('#answer').removeClass('is-danger');
+                    $('#answermessage').html('');
+                    $('#answer').val('');
+                }
+                function Validate(){
+                    quevalid();
+                    ansvalid();
+                    validall();
+                    return false;
+                }
+                $('#faqadd').click(function(){
+                    $('#faqmodal').addClass('is-active');
+                    $('#operation').val('Add');
+                    $('#faqtitle').val('Add FAQ');
+                    clearall();
+                });
+                $('#cancel').click(function(){
+                    $('#faqmodal').removeClass('is-active');
+                });
+                var dataTable = $('#faqtable').DataTable({
+                    "order":[],
+                    "ajax":{
+                        url:'php/faq/faqfetch.php',
+                        type:'POST'
+                    },
+                    "columnDefs":[
+                        {
+                            "targets":[2],
+                            "orderable":false,
+                        },
+                        {
+                            "targets":[0,1],
+                            "render":$.fn.dataTable.render.ellipsis(50),
+                        },
+                        {
+                            "targets":[0,1,2],
+                            "className":'dt-center',
+                        },
+                    ],
+                });
+                $(document).on('click','button[name = "update"]',function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        url:'php/faq/faqfetchsingle.php',
+                        method:'POST',
+                        data:{id:id},
+                        dataType:'json',
+                        success:function(data){
+                            $('#faqmodal').addClass('is-active');
+                            $('#question').val(data.question);
+                            $('#answer').val(data.answer);
+                            $('#user_id').val(id);
+                            $('#operation').val('Edit');
+                            $('#faqtitle').val('Edit FAQ');
+                        }
+                    });
+                });
+                $(document).on('click','button[name = "delete"]',function(){
+                    var id = $(this).attr('id');
+                    swal('Are you sure you want to delete?','','warning',{
+                        buttons:true,
+                        dangerMode:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/faq/faqdelete',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data){
+                                    if(data == 'Success'){
+                                        swal('Data Deleted','','success',{
+                                            closeOnClickOutside:false,
+                                        })
+                                        .then((value) => {
+                                            dataTable.ajax.reload();
+                                        });
+                                    }
+                                    else{
+                                        swal('Error','','error',{
+                                            closeOnClickOutside:false,
+                                        });
+                                    }
                                 }
                             });
                         }
                         else{
-                            swal(exist+' is already exist','','error',{
-                                closeOnClickOutside:false,
-                            })
-                            .then((value) => {
-                                br.value = "";
-                            });
-                        }
-                    });
-                }
-                else if($('#operation').val()=="Edit"){
-                    var data = $('#vform').serialize();
-                    $.ajax({
-                        data:data,
-                        type: "post",
-                        url: "php/brand/brandupdate.php",
-                        success: function(brup){
-                            if(brup == "Not Exist"){
-                                $('#brandmodal').removeClass('is-active');
-                                swal('Edit Successfully','','success',{
-                                    closeOnClickOutside:false,
-                                })
-                                .then((value) => {
-                                 dataTable.ajax.reload()
-                                });
-                            }
-                            else{
-                                swal(brup+' is already exist','','error',{
-                                    closeOnClickOutside:false,
-                                })
-                                .then((value) => {
-                                    br.value = "";
-                                });
-                            }
+                            return false;
                         }
                     })
-                }
-                return false;
-
-              }
-            }
-            $('#brandadd').click(function(){
-                clear();
-                $('#brandtitle').html('Add Brand');
-                $('#operation').val('Add');
-                $('#brandmodal').addClass('is-active');
-            });
-            $('#cancel').click(function(){
-                $('#brandmodal').removeClass('is-active');
-            });
-            function clear(){
-               br.value = "";
-               br_error.innerHTML = "";
-               $("#brand").removeClass("is-danger");$
-               $("#brandicon").removeClass("fas fa-exclamation-triangle");
-            }
-            document.addEventListener('DOMContentLoaded',function(){
-
-                var rootEl = document.documentElement;
-                var $modals = getAll('.modal');
-                var $modalButtons = getAll('.modal-button');
-                var $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete');
-
-                if ($modalButtons.length > 0) {
-                    $modalButtons.forEach(function ($el) {
-                      $el.addEventListener('click', function () {
-                        var target = $el.dataset.target;
-                        var $target = document.getElementById(target);
-                        rootEl.classList.add('is-clipped');
-                        $target.classList.add('is-active');
-                      });
-                    });
-                }
-                if ($modalCloses.length > 0) {
-                    $modalCloses.forEach(function ($el) {
-                      $el.addEventListener('click', function () {
-                        closeModals();
-                      });
-                    });
-                }
-                document.addEventListener('keydown', function (event) {
-                    var e = event || window.event;
-                    if (e.keyCode === 27) {
-                      closeModals();
-                    }
                 });
-                function closeModals() {
-                    rootEl.classList.remove('is-clipped');
-                    $modals.forEach(function ($el) {
-                      $el.classList.remove('is-active');
+                document.addEventListener('DOMContentLoaded',function(){
+                    var rootEl = document.documentElement;
+                    var $modals = getAll('.modal');
+                    var $modalButtons = getAll('.modal-button');
+                    var $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete');
+
+                    if ($modalButtons.length > 0) {
+                        $modalButtons.forEach(function ($el) {
+                          $el.addEventListener('click', function () {
+                            var target = $el.dataset.target;
+                            var $target = document.getElementById(target);
+                            rootEl.classList.add('is-clipped');
+                            $target.classList.add('is-active');
+                          });
+                        });
+                    }
+                    if ($modalCloses.length > 0) {
+                        $modalCloses.forEach(function ($el) {
+                          $el.addEventListener('click', function () {
+                            closeModals();
+                          });
+                        });
+                    }
+                    document.addEventListener('keydown', function (event) {
+                        var e = event || window.event;
+                        if (e.keyCode === 27) {
+                          closeModals();
+                        }
                     });
-                }
-                function getAll(selector) {
-                    return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
-                }
+                    function closeModals() {
+                        rootEl.classList.remove('is-clipped');
+                        $modals.forEach(function ($el) {
+                          $el.classList.remove('is-active');
+                        });
+                    }
+                    function getAll(selector) {
+                        return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+                    }
 
-            });
-
+                });
             </script>
         </body>
     </html>

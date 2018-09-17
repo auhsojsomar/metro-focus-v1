@@ -41,7 +41,8 @@
 			</div>
 			
 		</div>
-		<a id="elm" title="Back to top" href="#top" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
+		<a id="elm" title="Back to top" href="#" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
+		<!-- <a title="Back to top" href="#top" class="to-top"><i class="fas fa-chevron-circle-up"></i></a> -->
 	</footer>
 	<!-- footer end -->
 

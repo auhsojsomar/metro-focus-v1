@@ -127,7 +127,7 @@
                         <div class="navbar-start">
                             <a href="#" class="navbar-item" style="background: none !important;">Home</a>
 							<div class="navbar-item">
-                                <a href="pages/cameraaccessories.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
+                                <a href="pages/cameraparts.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
                             </div>
                             <div class="navbar-item">
                                 <a href="pages/cameraaccessories.php" class="navbar-item" style="background: none !important;">Accessories</a>

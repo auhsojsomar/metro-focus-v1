@@ -1,5 +1,4 @@
 <?php 
-//session_start();
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -12,10 +11,11 @@ if($_COOKIE['role'] == 'Admin'){
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="icon" href="../icon.ico">
             <link rel="apple-touch-icon" href="apple-touch-icon.png">
-            <link rel="stylesheet" href="css/vendor.css">
-            <link rel="stylesheet" href="css/app-blue.css">
+            <link rel="stylesheet" href="result/vendor.css">
+            <link rel="stylesheet" href="result/app-blue.css">
             <link rel="stylesheet" href="fontawesome/css/all.css">
             <link rel="stylesheet" href="css/bulma.min.css">
+            <link rel="stylesheet" href="css/datatables.min.css">
         </head>
         <body>
             <div class="main-wrapper">
@@ -30,11 +30,16 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li style="margin-left: 20px;">
-                                        <a href="#">
+                                        <a href="index.php">
                                             <span class="icon is-small">
                                                 <i class="fal fa-home" aria-hidden="true"></i>
                                             </span>
-                                            <span>Dashboard</span>
+                                            <span> Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="is-active">
+                                        <a href="#">
+                                            Trash
                                         </a>
                                     </li>
                                 </ul>
@@ -66,14 +71,14 @@ if($_COOKIE['role'] == 'Admin'){
                     <aside class="sidebar">
                         <div class="sidebar-container">
                             <div class="sidebar-header">
-                               <div class="brand">
+                                <div class="brand">
                                     <div style="text-align: center;margin-left: -30px;"><span style="font-size: 25px;font-weight: bold;">Metro</span><span style="font-size: 25px;color: #FF7100;font-weight:bold;">Focus</span></div>
                                 </div>
                             </div>
                             <nav class="menu">
                                 <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                                    <li class="active">
-                                        <a href="#">
+                                    <li>
+                                        <a href="index.php">
                                             <i class="fal fa-home"></i> Dashboard
                                         </a>
                                     </li>
@@ -126,8 +131,8 @@ if($_COOKIE['role'] == 'Admin'){
                                             <i class="fal fa-question-circle"></i> FAQ
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="trash.php">
+                                    <li class="active">
+                                        <a href="#">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
                                     </li>
@@ -135,103 +140,118 @@ if($_COOKIE['role'] == 'Admin'){
                             </nav>
                         </div>  
                     </aside>
-                    <article class="content dashboard-page">
-                        <div class="row sameheight-container">
-                            <div class="col col-12 col-sm-12 col-md-6 col-xl-5 stats-col">
-                                <div class="card sameheight-item stats" data-exclude="xs" style="height: 322px;">
-                                    <div class="card-block">
-                                        <div class="title-block">
-                                            <h4 class="title"> Stats </h4>
-                                            <p class="title-description"> Website metrics for
-                                                <a href="http://modularteam.github.io/modularity-free-admin-dashboard-theme-html/"> your awesome project </a>
-                                            </p>
-                                        </div>
-                                        <div class="row row-sm stats-container">
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-rocket"></i>
+                    <article class="content">
+                        <form method="POST" name="vform" id="vform">
+                            <div class="title-block">
+                                <h1 class="title"> Trash</h1>
+                            </div>
+                            <section class="section" style="padding-top:0px;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="card-title-block">
+                                                    <h3 class="title">Brand</h3>
                                                 </div>
-                                                <div class="stat">
-                                                    <div class="value"> 5407 </div>
-                                                    <div class="name"> Active items </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 75%;background-color: #fe821d">Items</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 78464 </div>
-                                                    <div class="name"> Items sold </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 50%;background-color: #fe821d">Kwan</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-line-chart"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> $80.560 </div>
-                                                    <div class="name"> Monthly income </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 60%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-users"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 359 </div>
-                                                    <div class="name"> Total users </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 34%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-list-alt"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 59 </div>
-                                                    <div class="name"> Tickets closed </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 49%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-dollar"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> $780.064 </div>
-                                                    <div class="name"> Total income </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 15%;"></div>
-                                                </div>
+                                                <section class="example">
+                                                    <div class="table-responsive">
+                                                        <table id="brandtable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: ">Name</th>
+                                                                <th style="width: ">Date Deleted</th>
+                                                                <th style="width: ">Category</th>
+                                                                <th style="width: 17%;text-align: center;">Action</th>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </section>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </section>
+                        </form>
                     </article>
                     <div class="sidebar-overlay" id="sidebar-overlay"></div>
                     <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                     <div class="mobile-menu-handle"></div> 
                 </div>
             </div>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/sweetalert.min.js"></script>
             <script src="js/vendor.js"></script>
             <script src="js/app.js"></script>
+            <script src="js/datatables.min.js"></script>
+            <script src="js/ellipsis.js"></script>
+            <script>
+                var dtbrand = $('#brandtable').DataTable({
+                    "ajax":{
+                    url:"php/trash/testing.php",
+                    type:"POST"
+                },
+                    "columnDefs":[
+                        {
+                            "targets":[1],
+                            "orderable":false,
+                        },
+                        {
+                            "targets":[0],
+                            "render":$.fn.dataTable.render.ellipsis(25),
+                        },
+                        {
+                            "targets":[0,1],
+                            "className":'dt-left',
+                        },
+                    ],
+                });
+                $(document).on('click','button[name="br_restore"]',function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        url:'php/trash/brandrecover.php',
+                        method:'POST',
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            swal('Data Recovered','','success',{
+                                closeOnClickOutside:false,
+                            })
+                            .then((value) =>{
+                                dtbrand.ajax.reload();
+                            });
+                        }
+                    });
+                });
+                $(document).on('click','button[name="br_delete"]',function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        url:'php/trash/branddelete',
+                        method:'POST',
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                                dangerMode:true,
+                                buttons:true,
+                            })
+                            .then((value) => {
+                                if(value){
+                                    swal('Data Deleted','','success',{
+                                        closeOnClickOutside:false,
+                                    })
+                                    .then((value) => {
+                                        dtbrand.ajax.reload();
+                                    });
+                                }
+                                else{
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
         </body>
     </html>
     <?php
