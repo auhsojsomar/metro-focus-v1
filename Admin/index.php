@@ -16,6 +16,7 @@ if($_COOKIE['role'] == 'Admin'){
             <link rel="stylesheet" href="css/app-blue.css">
             <link rel="stylesheet" href="fontawesome/css/all.css">
             <link rel="stylesheet" href="css/bulma.min.css">
+            <link rel="stylesheet" href="css/animate.min.css">
         </head>
         <body>
             <div class="main-wrapper">
@@ -135,7 +136,7 @@ if($_COOKIE['role'] == 'Admin'){
                             </nav>
                         </div>  
                     </aside>
-                    <article class="content dashboard-page">
+                    <article class="content dashboard-page animated bounceInLeft">
                         <div class="row sameheight-container">
                             <div class="col col-12 col-sm-12 col-md-6 col-xl-5 stats-col">
                                 <div class="card sameheight-item stats" data-exclude="xs" style="height: 322px;">

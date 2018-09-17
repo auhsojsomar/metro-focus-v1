@@ -16,6 +16,7 @@ if($_COOKIE['role'] == 'Admin'){
             <link rel="stylesheet" href="fontawesome/css/all.css">
             <link rel="stylesheet" href="css/bulma.min.css">
             <link rel="stylesheet" href="css/datatables.min.css">
+            <link rel="stylesheet" href="css/animate.min.css">
         </head>
         <body>
             <div class="main-wrapper">
@@ -140,7 +141,7 @@ if($_COOKIE['role'] == 'Admin'){
                             </nav>
                         </div>  
                     </aside>
-                    <article class="content">
+                    <article class="content animated bounceInLeft">
                         <form method="POST" name="vform" id="vform">
                             <div class="title-block">
                                 <h1 class="title"> Trash</h1>
