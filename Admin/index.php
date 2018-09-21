@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -17,6 +17,9 @@ if($_COOKIE['role'] == 'Admin'){
             <link rel="stylesheet" href="fontawesome/css/all.css">
             <link rel="stylesheet" href="css/bulma.min.css">
             <link rel="stylesheet" href="css/animate.min.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" href="../User/node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
+			            
         </head>
         <body>
             <div class="main-wrapper">
@@ -53,11 +56,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         <a class="dropdown-item" href="../User/pages/profile.php">
                                             <i class="fa fa-user icon"></i> Profile </a>
                                         <a class="dropdown-item" href="#">
-                                            <i class="fa fa-bell icon"></i> Notifications </a>
+                                            <i class="fa fa-bell icon badge"></i> Notification </a>
                                         <a class="dropdown-item" href="#">
                                             <i class="fa fa-gear icon"></i> Settings </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="php/logout.php">
+                                        <a class="dropdown-item" href="../User/pages/logout.php">
                                             <i class="fa fa-power-off icon"></i> Logout </a>
                                     </div>
                                 </li>
@@ -137,94 +140,7 @@ if($_COOKIE['role'] == 'Admin'){
                         </div>  
                     </aside>
                     <article class="content dashboard-page animated bounceInLeft">
-                        <div class="row sameheight-container">
-                            <div class="col col-12 col-sm-12 col-md-6 col-xl-5 stats-col">
-                                <div class="card sameheight-item stats" data-exclude="xs" style="height: 322px;">
-                                    <div class="card-block">
-                                        <div class="title-block">
-                                            <h4 class="title"> Stats </h4>
-                                            <p class="title-description"> Website metrics for
-                                                <a href="http://modularteam.github.io/modularity-free-admin-dashboard-theme-html/"> your awesome project </a>
-                                            </p>
-                                        </div>
-                                        <div class="row row-sm stats-container">
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-rocket"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 5407 </div>
-                                                    <div class="name"> Active items </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 75%;background-color: #fe821d">Items</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 78464 </div>
-                                                    <div class="name"> Items sold </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 50%;background-color: #fe821d">Kwan</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-line-chart"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> $80.560 </div>
-                                                    <div class="name"> Monthly income </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 60%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-users"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 359 </div>
-                                                    <div class="name"> Total users </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 34%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6  stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-list-alt"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> 59 </div>
-                                                    <div class="name"> Tickets closed </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 49%;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6 stat-col">
-                                                <div class="stat-icon">
-                                                    <i class="fa fa-dollar"></i>
-                                                </div>
-                                                <div class="stat">
-                                                    <div class="value"> $780.064 </div>
-                                                    <div class="name"> Total income </div>
-                                                </div>
-                                                <div class="progress stat-progress">
-                                                    <div class="progress-bar" style="width: 15%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    	
                     </article>
                     <div class="sidebar-overlay" id="sidebar-overlay"></div>
                     <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
@@ -238,7 +154,7 @@ if($_COOKIE['role'] == 'Admin'){
     <?php
 }
 else{
-    header('Location: ../User/index.php');
+    header('Location: ../User/');
 }
 
  ?>

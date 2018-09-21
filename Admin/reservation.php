@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -32,7 +32,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li style="margin-left: 20px;">
-                                        <a href="index.php">
+                                        <a href="./">
                                             <span class="icon is-small">
                                                 <i class="fal fa-home" aria-hidden="true"></i>
                                             </span>
@@ -63,7 +63,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <a class="dropdown-item" href="#">
                                             <i class="fa fa-gear icon"></i> Settings </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="php/logout.php">
+                                        <a class="dropdown-item" href="../User/pages/logout.php">
                                             <i class="fa fa-power-off icon"></i> Logout </a>
                                     </div>
                                 </li>
@@ -80,7 +80,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="menu">
                                 <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                     <li>
-                                        <a href="index.php">
+                                        <a href="./">
                                             <i class="fal fa-home"></i> Dashboard
                                         </a>
                                     </li>
@@ -221,23 +221,23 @@ if($_COOKIE['role'] == 'Admin'){
                                 <form method="POST" id="vfrom" name="vform">
                                 <div class="field">
                                     <label for="" class="label">Email</label>
-                                    <input id="username" type="input" class="input" disabled="true">
+                                    <input id="username" type="input" class="input" readonly>
                                 </div>
                                 <div class="field">
                                     <label for="" class="label">Reservation Date</label>
-                                    <input id="reservedate" type="input" class="input" disabled="true">
+                                    <input id="reservedate" type="input" class="input" readonly>
                                 </div>
                                 <div class="field">
                                     <label for="" class="label">Item Name</label>
-                                    <input id="itemname" type="input" class="input" disabled="true">
+                                    <input id="itemname" type="input" class="input" readonly>
                                 </div>
                                 <div class="field">
                                     <label for="" class="label">Quantity</label>
-                                    <input id="itemquantity" type="input" class="input" disabled="true">
+                                    <input id="itemquantity" type="input" class="input" readonly>
                                 </div>
                                 <div class="field">
                                     <label for="" class="label">Status</label>
-                                    <input id="status" type="input" class="input" disabled="true">
+                                    <input id="status" type="input" class="input" readonly>
                                 </div>
                                 </form>
                             </section>
@@ -292,7 +292,7 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#status').val(data.status);
                         $('#reservetitle').html('Parts Reservation Details');
                     }
-                })
+                });
             });
             $(document).on('click','button[name="confirm"]',function(){
                 var user_id2 = $(this).attr("id");
@@ -312,7 +312,7 @@ if($_COOKIE['role'] == 'Admin'){
                             dataTable.ajax.reload();
                         });
                         }
-                })
+                });
             });
             var dataTable2 = $('#accessoriestable').DataTable({
                 "ajax":{
@@ -351,7 +351,7 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#status').val(data.status);
                         $('#reservetitle').html('Accessories Reservation Details');
                     }
-                })
+                });
             });
             $(document).on('click','button[name="confirm2"]',function(){
                 var user_id2 = $(this).attr("id");
@@ -371,7 +371,7 @@ if($_COOKIE['role'] == 'Admin'){
                             dataTable2.ajax.reload();
                         });
                         }
-                })
+                });
             });
             document.addEventListener('DOMContentLoaded',function(){
 
@@ -420,7 +420,7 @@ if($_COOKIE['role'] == 'Admin'){
     <?php
 }
 else{
-    header('Location: ../User/index.php');
+    header('Location: ../User/');
 }
 
  ?>

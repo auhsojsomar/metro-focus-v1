@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 // Set your timezone
 date_default_timezone_set('Asia/Manila');
 // Get prev & next month
@@ -78,7 +78,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
       <div class="container">
         <nav class="navbar is-dark">
           <div class="navbar-brand">
-            <a href="../index.php" class="navbar-item" style="background: none !important;">
+            <a href="../" class="navbar-item" style="background: none !important;">
               <span style="font-weight: bold;">Metro</span><span style="color: #FF7100;font-weight: bold;">Focus</span>
             </a>
 
@@ -91,7 +91,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 
           <div class="navbar-menu">
             <div class="navbar-start">
-              <a href="../index.php" class="navbar-item" style="background: none !important;">Home</a>
+              <a href="../" class="navbar-item" style="background: none !important;">Home</a>
               <div class="navbar-item">
                 <a href="cameraparts.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
               </div>

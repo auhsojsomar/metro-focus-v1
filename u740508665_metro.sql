@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 17, 2018 at 01:27 PM
+-- Generation Time: Sep 21, 2018 at 04:33 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `metrofocus`
+-- Database: `u740508665_metro`
 --
 
 -- --------------------------------------------------------
@@ -62,21 +62,26 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `concern` varchar(255) NOT NULL,
-  `datestart` varchar(255) NOT NULL,
-  `timestart` varchar(255) NOT NULL,
+  `schedule` varchar(200) NOT NULL,
   `cnumber` varchar(255) NOT NULL,
   `remarks` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Pending',
   `deleted` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `schedule` (`schedule`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`id`, `username`, `concern`, `datestart`, `timestart`, `cnumber`, `remarks`, `status`, `deleted`) VALUES
-(1, 'admin@gmail.com', 'Baaaam', '2018-09-22', '8:00AM - 9:00AM', '09847987987', 'if you wanna', 'Confirmed', 0);
+INSERT INTO `appointment` (`id`, `username`, `concern`, `schedule`, `cnumber`, `remarks`, `status`, `deleted`) VALUES
+(11, 'user@gmail.com', 'qweqweqweqweqweqweqweqweqwe', '09/21/2018 08:00', '09831092830', 'qweqwe', 'Confirmed', 0),
+(10, 'user@gmail.com', 'q', '09/21/2018 10:00', '00000000000', 'qwe', 'Confirmed', 0),
+(9, 'user@gmail.com', 'qwe', '09/28/2018 09:30', '0000000000', 'qweqwe', 'Confirmed', 0),
+(8, 'user@gmail.com', 'qwe', '09/20/2018 10:00', '09213123123', '  ', 'Confirmed', 0),
+(7, 'user@gmail.com', 'aw', '09/20/2018 08:00', '09', 'qweqwe', 'Confirmed', 0),
+(12, 'admin@gmail.com', 'qwe', '09/28/2018 10:30', '01928301298', 'qwelkasdjlkasjd', 'Confirmed', 0);
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `deleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `brand` (`brand`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `brand`
@@ -149,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `faq` (
 --
 
 INSERT INTO `faq` (`id`, `question`, `answer`, `date_deleted`, `deleted`) VALUES
-(1, 'Why is my DSLR won\'t turn on retain charge?', 'The most common reason for your camera not turning on is that your battery is defunct or not in place properly.The first thing to do is to charge your battery then to make sure it\'s inserted properly into the compartment. You\'d be amazed how often we get people coming in with batteries that have just jolted slightly loose.Once you\'ve secured it in place, check your dials, buttons and memory cards. If they seem to be functioning and in the right spot, go ahead and press the power button. If this doesn\'t work, you might need to replace the battery, or it could be something more terminal so go to any camera repairing shop.', NULL, 0),
+(1, 'Why is my DSLR wonâ€²t turn on retain charge?', 'The most common reason for your camera not turning on is that your battery is defunct or not in place properly.The first thing to do is to charge your battery then to make sure itâ€²s inserted properly into the compartment. Youâ€²d be amazed how often we get people coming in with batteries that have just jolted slightly loose.Once youâ€²ve secured it in place, check your dials, buttons and memory cards. If they seem to be functioning and in the right spot, go ahead and press the power button. If this doesnâ€²t work, you might need to replace the battery, or it could be something more terminal so go to any camera repairing shop.', NULL, 0),
 (7, 'What should I do if I accidentally dropped my camera?', 'Firstly, take some deep breaths. Thereâ€™s nothing you can do about it now. When youâ€™ve stopped shaking from shock, start checking all the parts of your camera. Like the tip above, check the battery compartment, memory card slots, buttons, dials and body. If they look in order, go ahead and try the power button. Hopefully it starts without any issues. If nothing happens, you may want to take it into a camera shop so they can take a look inside the camera body.', NULL, 0),
 (8, 'My picture quality isnâ€™t great, it looks like it has spots or blobs on it.', 'The last thing you want to do is to take a perfect picture only to find it mired with dark spots or blobby patches. To avoid or remedy this, you need to work out if itâ€™s your lens or your sensor. You can test this by taking photos of a plain sheet of A4 paper with each your lenses. Upload them to your computer and if the spots are the same on every photo, it means itâ€™s your sensor. If the marks are constricted to one type of lens, try cleaning the lens head the right way, with accessories like air blowers and specialty lens cleaning tissues; cleaning with an inappropriate chemical or scratchy cloth can permanently damage the lens.', NULL, 0),
-(9, 'My camera isnâ€™t saving any photos or pictures, why is that?', 'Most likely this is an issue with your memory card, which could be full or corrupt or not inserted properly (generally, error messages will appear). The best tactic is to insert a different memory card into your camera and to try taking pictures with it. If it works, chances are itâ€™s your existing memory card thatâ€™s the problem. Note that some cameras also have a battery saving feature that might restrict photo saving so make sure your camera is charged first. If so, look closely for any irregularities on the card. A thumb print on the metal stripes could be the cause, as could a crack or scratch. Clean it and try again. If itâ€™s still not working, it could be that your cameraâ€™s firmware or software simply doesnâ€™t recognize it anymore so try inserting it into another card reader. Failing this, you should take the memory card to a camera repair shop to try and recover your photos.', NULL, 0);
+(9, 'My camera isnâ€²t saving any photos or pictures, why is that?', 'Most likely this is an issue with your memory card, which could be full or corrupt or not inserted properly (generally, error messages will appear). The best tactic is to insert a different memory card into your camera and to try taking pictures with it. If it works, chances are itâ€²s your existing memory card thatâ€²s the problem. Note that some cameras also have a battery saving feature that might restrict photo saving so make sure your camera is charged first. If so, look closely for any irregularities on the card. A thumb print on the metal stripes could be the cause, as could a crack or scratch. Clean it and try again. If itâ€²s still not working, it could be that your cameraâ€²s firmware or software simply doesnâ€²t recognize it anymore so try inserting it into another card reader. Failing this, you should take the memory card to a camera repair shop to try and recover your photos.', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -174,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `loginform` (
   `deleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `loginform`
@@ -216,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `parts` (
 
 INSERT INTO `parts` (`id`, `image`, `name`, `brand`, `category`, `price`, `quantity`, `description`, `date_deleted`, `deleted`) VALUES
 (1, '26927.jpeg', 'Fujifilm HS1', 'Fuji', 'Lens', 2462, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas corporis, harum repudiandae numquam reiciendis magnam non inventore voluptatem quo quos.', NULL, 0),
-(2, '310.jpeg', 'Nikon D600', 'Nikon', 'Card Slot', 465.72, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quibusdam possimus suscipit itaque mollitia nobis laboriosam, accusantium architecto eveniet, porro veniam nostrum a, corporis eos fa', NULL, 0);
+(2, '310.jpeg', 'Nikon D600', 'Nikon', 'Card Slot', 465.72, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quibusdam possimus suscipit itaque mollitia nobis laboriosam, accusantium architecto eveniet, porro veniam nostrum a, corporis eos fa', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -235,16 +240,17 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `status` varchar(255) NOT NULL DEFAULT 'Pending',
   `deleted` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reservation`
 --
 
 INSERT INTO `reservation` (`id`, `username`, `reservationdate`, `itemid`, `category`, `itemquantity`, `status`, `deleted`) VALUES
-(28, 'admin@gmail.com', '09/16/2018', 2, 'Parts', 2, 'Pending', 0),
-(29, 'admin@gmail.com', '09/16/2018', 1, 'Parts', 2, 'Pending', 0),
-(30, 'admin@gmail.com', '09/16/2018', 1, 'Accessories', 2, 'Pending', 0);
+(28, 'admin@gmail.com', '09/16/2018', 2, 'Parts', 2, 'Confirmed', 0),
+(29, 'admin@gmail.com', '09/16/2018', 1, 'Parts', 2, 'Confirmed', 0),
+(30, 'admin@gmail.com', '09/16/2018', 1, 'Accessories', 2, 'Pending', 0),
+(31, 'admin@gmail.com', '09/20/2018', 2, 'Parts', 3, 'Pending', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

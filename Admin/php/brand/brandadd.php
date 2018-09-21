@@ -1,6 +1,5 @@
 <?php 
 	include '../../../User/includes/db.php';
-	$brands = $_POST['brand'];
-	$brand = addcslashes($brands, "'");
+	$brand = $_POST['brand'];
 	$sql = mysqli_query($con,"INSERT INTO brand (brand)VALUES('$brand')");
 ?>

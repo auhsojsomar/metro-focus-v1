@@ -9,8 +9,7 @@ if(isset($_POST["user_id"]))
 	{
 		$output["username"] = $row["username"];
 		$output["concern"] = $row["concern"];
-		$output["datestart"] = $row["datestart"];
-		$output["timestart"] = $row["timestart"];
+		$output["schedule"] = $row["schedule"];
 		$output["cnumber"] = $row["cnumber"];
 		$output["remarks"] = $row["remarks"];
 		$output["status"] = $row["status"];

@@ -1,10 +1,14 @@
 <?php 
-	//session_start();
+	session_start();
 	$concern = $_POST['concern'];
-	$datestart = $_POST['datestart'];
-	$timestart = $_POST['timestart'];
+	$schedule = $_POST['schedule'];
 	$cnumber = $_POST['cnumber'];
 	$remarks = $_POST['remarks'];
 	include '../includes/db.php';
-	$query = mysqli_query($con,"INSERT INTO appointment (username,concern,datestart,timestart,cnumber,remarks)VALUES('{$_COOKIE['email']}','$concern','$datestart','$timestart','$cnumber','$remarks')");
+	if(mysqli_query($con,"INSERT INTO appointment (username,concern,schedule,cnumber,remarks)VALUES('{$_COOKIE['email']}','$concern','$schedule','$cnumber','$remarks')")){
+		echo "Success";
+	}
+	else{
+		echo "Not available";
+	}
  ?>

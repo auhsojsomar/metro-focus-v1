@@ -1,7 +1,7 @@
 <?php 
 	include '../includes/db.php';
 	$itemid = $_POST['uid'];
-	//session_start();
+	session_start();
 	$user = $_COOKIE['email'];
 	$quantity = $_POST['quantity'];
 	$datee = date('m/d/Y');

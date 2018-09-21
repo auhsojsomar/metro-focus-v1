@@ -1,12 +1,11 @@
 <?php
-$connection = new PDO( 'mysql:host=localhost;dbname=metrofocus', 'root', '' );
+include '../../../User/includes/db.php';
 $output = array();
 $query = "SELECT * FROM accessories  WHERE deleted = 0 ORDER BY id DESC";
 $statement = $connection->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
 $data = array();
-$filtered_rows = $statement->rowCount();
 foreach($result as $row)
 {
 	$image = '';

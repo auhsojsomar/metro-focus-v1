@@ -1,5 +1,5 @@
 <?php
-$connection = new PDO( 'mysql:host=localhost;dbname=metrofocus', 'root', '' );
+include '../../../User/includes/db.php';
 $output = array();
 $query = "SELECT * FROM appointment  WHERE deleted = 0 ORDER BY id DESC";
 $statement = $connection->prepare($query);
@@ -12,8 +12,7 @@ foreach($result as $row)
     $sub_array = array();
     $sub_array[] = $row["username"];
     $sub_array[] = $row["concern"];
-    $sub_array[] = $row["datestart"];
-    $sub_array[] = $row["timestart"];
+    $sub_array[] = $row["schedule"];
     $sub_array[] = $row["cnumber"];
     $sub_array[] = $row["remarks"];
     $sub_array[] = $row["status"];

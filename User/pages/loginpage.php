@@ -1,7 +1,7 @@
 <?php 
-//session_start();
+session_start();
 if(isset($_COOKIE['username'])){
-  header('Location: ../index.php');
+  header('Location: ../');
 }
 ?>
 <!-- bulma core css -->
@@ -22,7 +22,7 @@ if(isset($_COOKIE['username'])){
       <div class="container">
         <nav class="navbar is-dark">
           <div class="navbar-brand">
-            <a href="../index.php" class="navbar-item" style="background: none !important;">
+            <a href="../" class="navbar-item" style="background: none !important;">
               <span style="font-weight: bold;">Metro</span><span style="color: #FF7100;font-weight: bold;">Focus</span>
             </a>
 
@@ -35,7 +35,7 @@ if(isset($_COOKIE['username'])){
 
           <div class="navbar-menu">
             <div class="navbar-start">
-              <a href="../index.php" class="navbar-item" style="background: none !important;">Home</a>
+              <a href="../" class="navbar-item" style="background: none !important;">Home</a>
               <div class="navbar-item">
                 <a href="cameraparts.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
               </div>
@@ -64,9 +64,9 @@ if(isset($_COOKIE['username'])){
       </div>
     </div>
 </section>
-  <div class="hero-body">
+  <div class="hero-body is-inline-block-mobile">
     <div class="container">
-      <div class="columns is-mobile is-multiline is-centered">
+      <div class="columns is-multiline is-centered">
         <div class="column is-half">
           <form method="POST" name="loginform" id="loginform" onsubmit="return Validate();">
             <h1 style="color: white" class="has-text-centered title is-cursor-pointer is-size-1-touch">
@@ -188,10 +188,10 @@ if(isset($_COOKIE['username'])){
                success: function(data)
                {
                   if (data == 'Admin') {
-                    window.location = '../../Admin/index.php';
+                    window.location = '../../Admin/';
                   }
                   else if (data == 'User') {
-                    window.location = '../index.php';
+                    window.location = '../';
                   }
                   else {
                     swal(data,"","warning")

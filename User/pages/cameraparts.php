@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 include '../includes/db.php';
 $sql = mysqli_query($con,'SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC');
  ?>
@@ -26,7 +26,7 @@ $sql = mysqli_query($con,'SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC
             <div class="container">
                 <nav class="navbar is-dark">
                     <div class="navbar-brand">
-                        <a href="../index.php" class="navbar-item" style="background: none !important;">
+                        <a href="../" class="navbar-item" style="background: none !important;">
 							<span style="font-weight: bold;">Metro</span><span style="color: #FF7100;font-weight: bold;">Focus</span>
 						</a>
 
@@ -39,7 +39,7 @@ $sql = mysqli_query($con,'SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC
 
                     <div class="navbar-menu">
                         <div class="navbar-start">
-                            <a href="../index.php" class="navbar-item" style="background: none !important;">Home</a>
+                            <a href="../" class="navbar-item" style="background: none !important;">Home</a>
 
                             <div class="navbar-item">
                                 <a href="cameraaccessories.php" class="navbar-item" style="background: none !important;">Accessories</a>
@@ -48,11 +48,11 @@ $sql = mysqli_query($con,'SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC
                               <a href="faq.php" class="navbar-item" style="background: none !important;">FAQs</a>
                             </div>
                         </div>
-                        <div class="navbar-item is-paddingless is-guest">
+                        <!-- <div class="navbar-item is-paddingless is-guest">
                                 <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
                                     <span><i class="fal fa-shopping-cart fa-lg"></i></span>
                                 </a>
-                            </div>
+                            </div> -->
                         <style>
                             #btnhover:hover {
                                 background-color: #44bfd5 !important;
@@ -120,7 +120,6 @@ $sql = mysqli_query($con,'SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC
         </div>
     </section>
     <section class="hero">
-
         <div class="hero-body">
             <div class='carousel carousel-animated carousel-animate-slide' data-autoplay="true">
                 <div class='carousel-container'>

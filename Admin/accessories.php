@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 include '../User/includes/db.php';
 if($_COOKIE['role'] == 'Admin'){
     ?>
@@ -33,7 +33,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li style="margin-left: 20px;">
-                                        <a href="index.php">
+                                        <a href="./">
                                             <span class="icon is-small">
                                                 <i class="fal fa-home" aria-hidden="true"></i>
                                             </span>
@@ -64,7 +64,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <a class="dropdown-item" href="#">
                                             <i class="fa fa-gear icon"></i> Settings </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="php/logout.php">
+                                        <a class="dropdown-item" href="../User/pages/logout.php">
                                             <i class="fa fa-power-off icon"></i> Logout </a>
                                     </div>
                                 </li>
@@ -81,7 +81,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="menu">
                                 <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                     <li>
-                                        <a href="index.php">
+                                        <a href="./">
                                             <i class="fal fa-home"></i> Dashboard
                                         </a>
                                     </li>
@@ -323,9 +323,10 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/vendor.js"></script>
             <script src="js/app.js"></script>
             <script src="js/datatables.min.js"></script>
-            <script src="js/ellipsis"></script>
+            <script src="js/ellipsis.js"></script>
             <script>
                 var dataTable = $('#accessoriestable').DataTable({
+                    "order":[],
                     "ajax":{
                     url:"php/accessories/accessoriesfetch.php",
                     type:"POST"
@@ -688,7 +689,7 @@ if($_COOKIE['role'] == 'Admin'){
     <?php
 }
 else{
-    header('Location: ../User/index.php');
+    header('Location: ../User/');
 }
 
  ?>

@@ -1,5 +1,5 @@
 <?php
-	//session_start();
+	session_start();
 	include '../includes/db.php';
 	$user = $_POST['email'];
 	$pass = md5($_POST['pass']);

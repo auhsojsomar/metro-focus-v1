@@ -1,48 +1,55 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins');
 
-*{
-  margin: 0;
-  padding: 0;
+* {
+	margin: 0;
+	padding: 0;
 }
 
-.hero{
-	background: #071425 !important ;
- 
+.hero {
+	background: #071425 !important;
+
 }
 
-.box{
+.box {
 	background: #F3F4F5 !important;
 	margin: auto 2rem;
 }
 
 
-.container{
-  /*margin-top: -5rem;*/
+.container {
+	/*margin-top: -5rem;*/
 }
 
-.form-heading{
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+.form-heading {
+	margin-top: 1rem;
+	margin-bottom: 2rem;
 }
 
-.form-heading h2{
+.form-heading h2 {
 	color: #fff !important;
 }
 
-.is-warning{
-  background-color: #FF7100 !important;
-  color: #fff !important;
+.is-warning {
+	background-color: #FF7100 !important;
+	color: #fff !important;
 }
 
-.level-item .heading a{
-	color:#646B74 !important;
+.level-item .heading a {
+	color: #646B74 !important;
 }
 
-.level-item .heading a:hover{
-	color:#fff !important;
+.level-item .heading a:hover {
+	color: #fff !important;
 	transition: all .75s ease-in-out;
 }
 
-.level{
+.level {
 	margin-top: 1rem !important;
+}
+
+@media screen and (max-width:1087px) {
+	.hero-body.is-inline-block-mobile {
+		margin: 0px;
+		padding: 0px;
+	}
 }

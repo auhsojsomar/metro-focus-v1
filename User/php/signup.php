@@ -1,6 +1,6 @@
 <?php 
 	include '../includes/db.php';
-	//session_start();
+	session_start();
 	$date = date('F d, Y');
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];

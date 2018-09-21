@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -32,7 +32,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li style="margin-left: 20px;">
-                                        <a href="index.php">
+                                        <a href="./">
                                             <span class="icon is-small">
                                                 <i class="fal fa-home" aria-hidden="true"></i>
                                             </span>
@@ -63,7 +63,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <a class="dropdown-item" href="#">
                                             <i class="fa fa-gear icon"></i> Settings </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="php/logout.php">
+                                        <a class="dropdown-item" href="../User/pages/logout.php">
                                             <i class="fa fa-power-off icon"></i> Logout </a>
                                     </div>
                                 </li>
@@ -80,7 +80,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="menu">
                                 <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                     <li>
-                                        <a href="index.php">
+                                        <a href="./">
                                             <i class="fal fa-home"></i> Dashboard
                                         </a>
                                     </li>
@@ -164,12 +164,11 @@ if($_COOKIE['role'] == 'Admin'){
                                                         <tr>
                                                             <th>Username</th>
                                                             <th>Concern</th>
-                                                            <th>Appointment Date</th>
-                                                            <th>Appointment Time</th>
+                                                            <th>Schedule</th>
                                                             <th>Contact Number</th>
                                                             <th>Remarks</th>
                                                             <th>Status</th>
-                                                            <th style="text-align: center;">Action</th>
+                                                            <th style="text-align: center;width: 20%">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody></tbody>
@@ -224,27 +223,23 @@ if($_COOKIE['role'] == 'Admin'){
                             <form method="POST" id="vfrom" name="vform">
                             <div class="field">
                                 <label for="" class="label">Email</label>
-                                <input id="username" type="input" class="input" disabled="true">
+                                <input id="username" type="input" class="input" readonly>
                             </div>
                             <div class="field">
                                 <label for="" class="label">Concern</label>
-                                <input id="concern" type="input" class="input" disabled="true">
+                                <input id="concern" type="input" class="input" readonly>
                             </div>
                             <div class="field">
-                                <label for="" class="label">Appointment date</label>
-                                <input id="datestart" type="input" class="input" disabled="true">
-                            </div>
-                            <div class="field">
-                                <label for="" class="label">Appointment time</label>
-                                <input id="timestart" type="input" class="input" disabled="true">
+                                <label for="" class="label">Schedule</label>
+                                <input id="schedule" type="input" class="input" readonly>
                             </div>
                             <div class="field">
                                 <label for="" class="label">Contact Number</label>
-                                <input id="cnumber" type="input" class="input" disabled="true">
+                                <input id="cnumber" type="input" class="input" readonly>
                             </div>
                             <div class="field">
                                 <label for="" class="label">Remarks</label>
-                                <textarea id="remarks" type="input" class="textarea" disabled="true"></textarea>
+                                <textarea id="remarks" type="input" class="textarea" readonly></textarea>
                             </div>
                             </form>
                         </section>
@@ -262,21 +257,22 @@ if($_COOKIE['role'] == 'Admin'){
 
             <script>
             var dataTable = $('#tabledit').DataTable({
+                "order":[],
                 "ajax":{
                 url:"php/appointment/appointmentfetch.php",
                 type:"POST"
             },
                 "columnDefs":[
                     {
-                        "targets":[7],
+                        "targets":[6],
                         "orderable":false,
                     },
                     {
-                        "targets":[1,2,3,4,5,6],
+                        "targets":[1,2,3,4,5],
                         "render":$.fn.dataTable.render.ellipsis(25),
                     },
                     {
-                        "targets":[0],
+                        "targets":[0,1,2,3,4,5,6],
                         "className":'dt-center',
                     },
                 ],
@@ -293,8 +289,7 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#appointmentmodal').addClass('is-active');
                         $('#username').val(data.username);
                         $('#concern').val(data.concern);
-                        $('#datestart').val(data.datestart);
-                        $('#timestart').val(data.timestart);
+                        $('#schedule').val(data.schedule);
                         $('#cnumber').val(data.cnumber);
                         $('#remarks').val(data.remarks);
                         $('#status').val(data.status);
@@ -369,7 +364,7 @@ if($_COOKIE['role'] == 'Admin'){
     <?php
 }
 else{
-    header('Location: ../User/index.php');
+    header('Location: ../User/');
 }
 
  ?>

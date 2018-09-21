@@ -1,5 +1,5 @@
 <?php
-$connection = new PDO( 'mysql:host=localhost;dbname=metrofocus', 'root', '' );
+include '../../../User/includes/db.php';
 $output = array();
 $query = "SELECT * FROM parts WHERE deleted = 0 ORDER BY id DESC";
 $statement = $connection->prepare($query);

@@ -24,7 +24,7 @@
 		<div class="hero-foot background is-primary is-primary-gradient">
 			<div class="container has-text-centered">
 				<div class="columns is-centered">
-					<div class="column is-3">
+					<div class="column is-3 is-inline-block-mobile ">
 						<span class="button is-huge is-text">
 							<span class="icon is-huge iconbg is-marginless">
 								<i class="fas fa-circle"></i>
@@ -38,7 +38,7 @@
 							An easier way to do transactions is now available in your doorstep. Our role is to maintain a good relationship with our customer which includes operating in your most convenient time.
 						</h4>
 					</div>
-					<div class="column is-3">
+					<div class="column is-3 is-inline-block-mobile ">
 						<span class="button is-huge is-text">
 							<span class="icon is-huge iconbg is-marginless">
 								<i class="fas fa-circle fa-stack"></i>
@@ -52,7 +52,7 @@
 							We assist customers in making a cost effective and reliable reservation of items.  It includes assistance in troubleshooting, maintenance, upgrading, and repair of a camera.
 						</h4>
 					</div>
-					<div class="column is-3">
+					<div class="column is-3 is-inline-block-mobile">
 						<span class="button is-huge is-text">
 							<span class="icon is-huge iconbg is-marginless">
 								<i class="fas fa-circle fa-stack"></i>

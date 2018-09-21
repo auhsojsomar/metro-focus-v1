@@ -1,7 +1,7 @@
 <?php 
 include '../../../User/includes/db.php';
 $output = array('data' => array());
-$sql = "SELECT * FROM loginform WHERE deleted = 1 AND status = 'Admin'";
+$sql = "SELECT * FROM loginform WHERE deleted = 1 AND status = 'Admin' ORDER BY id DESC";
 $query = $con->query($sql);
 while ($row = $query->fetch_assoc()) {
     $actionButton = '<button type="button" name="ad_restore" id="'.$row["id"].'" class="button is-warning is-small"><i class="far fa-undo"></i> Restore</button><button type="button" name="ad_delete" id="'.$row["id"].'" class="button is-danger is-small"><i class="fal fa-trash-alt"></i> Delete</button>';

@@ -1,7 +1,7 @@
 <?php 
-//session_start();
+session_start();
 if(isset($_COOKIE['username'])){
-	header('Location: ../index.php');
+	header('Location: ../');
 }
 ?>
 <!-- bulma core css -->
@@ -16,7 +16,7 @@ if(isset($_COOKIE['username'])){
 <link rel="stylesheet" href="../css/footer.css">
 <title>MetroFocus | Signup</title>
 
-<section class="hero is-fullheight">
+<section class="hero">
 <section class="hero is-dark">
     <div class="hero-head" style="background: #071425;">
       <div class="container">
@@ -35,7 +35,7 @@ if(isset($_COOKIE['username'])){
 
           <div class="navbar-menu">
             <div class="navbar-start">
-              <a href="../index.php" class="navbar-item" style="background: none !important;">Home</a>
+              <a href="../" class="navbar-item" style="background: none !important;">Home</a>
               <div class="navbar-item">
                 <a href="cameraparts.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
               </div>
@@ -285,7 +285,7 @@ if(isset($_COOKIE['username'])){
 	    			if(data == "Success"){
 	    				swal("Signup Successfully","","success")
 	    				.then((value) => {
-	    					window.location = '../index.php';
+	    					window.location = '../';
 	    				});
 	    			}
 	    		}

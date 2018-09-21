@@ -1,4 +1,4 @@
-<?php //session_start(); ?>
+<?php session_start(); ?>
 <!-- bulma core css -->
 		<link rel="icon" href="../../icon.ico">
 	    <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -9,6 +9,7 @@
 	    <link rel="stylesheet" href="../css/appointment.css">
 	    <link rel="stylesheet" href="../css/footer.css">
 	    <link rel="stylesheet" href="../css/bulma-calendar.min.css">
+	    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
 
 	    <title>MetroFocus | Appointment</title>
 		
@@ -17,7 +18,7 @@
 		      <div class="container">
 		        <nav class="navbar is-dark">
 		          <div class="navbar-brand">
-		            <a href="../index.php" class="navbar-item" style="background: none !important;">
+		            <a href="../" class="navbar-item" style="background: none !important;">
 		              <span style="font-weight: bold;">Metro</span><span style="color: #FF7100;font-weight: bold;">Focus</span>
 		            </a>
 
@@ -30,7 +31,7 @@
 
 		          <div class="navbar-menu">
 		            <div class="navbar-start">
-		              <a href="../index.php" class="navbar-item" style="background: none !important;">Home</a>
+		              <a href="../" class="navbar-item" style="background: none !important;">Home</a>
 		              <div class="navbar-item">
 		                <a href="cameraparts.php" class="navbar-item" style="background: none !important;">Camera Parts</a>
 		              </div>
@@ -116,7 +117,7 @@
 	                    <h2 class="text" style="font-size: 1.3rem; color: #2a2a2a!important; ">Request an Appointment</h2>
 	                    <!-- <?php echo $message; ?> -->
 	                </div>
-	                <div class="columns form-container is-centered">
+	                <div class="columns is-mobile form-container is-centered">
 	                    <div class="column is-half">
 	                        <form onsubmit="return Validate()" method="POST" name="vform" id="vform" enctype="multipart/form-data"">
 	                            <div class="field">
@@ -129,63 +130,16 @@
 		                                    <p class="help is-danger" id="concernmessage"></p>
 		                            	</div>
 	                    		</div>
-	                            <!-- <div class="field">
-	                                <p class="control">
-	                                    <label for="label_lName">Choose date</label>
-	                                    <input id="datepickerDemo" class="input" type="date" name="datepickerDemo">
-	                                </p>
-	                            </div> -->
-	                            <div class="field">
-	                        		<label class="label">Choose date</label>
+	                    		<div class="field">
+	                        		<label class="label">Schedule</label>
 		                            	<div class="control has-icons-right">
-		                                	<input type="date" class="input" id="datestart" name="datestart" placeholder="Product Name" onchange="handler(event);">
+		                                	<input readonly maxlength="200" class="input" type="text" id="schedule" name="schedule">
 		                                    <span class="icon is-small is-right">
-		                                        <i id="dateicon" class=""></i>
+		                                        <i id="scheduleicon" class=""></i>
 		                                    </span>
-		                                    <p class="help is-danger" id="datemessage"></p>
+		                                    <p class="help is-danger" id="schedulemessage"></p>
 		                            	</div>
 	                    		</div>
-	                            <div class="field">
-	                                <p class="control">
-	                                    <label class="label">Choose time</label>
-	                                    <div class="select" id="timedanger">
-	                                    	<select name="timestart" id="timestart">
-	                                    		<option selected="true" disabled="disabled">Select Time</option>
-								        		<?php
-								        			$awe = $_POST['datestart']; 
-				        				        	include '../includes/db.php';
-				        				        	$query = mysqli_query($con,'SELECT timestart FROM appointment WHERE datestart = "$awe"');
-				        				        	$val = array("8:00AM - 9:00AM","9:00AM - 10:00AM","10:00AM - 11:00AM","11:00AM - 12:00PM","12:00PM - 1:00PM","1:00PM - 2:00PM","2:00PM - 3:00PM","3:00PM - 4:00PM","4:00PM - 5:00PM","5:00PM - 6:00PM","6:00PM - 7:00PM","7:00PM - 8:00PM");
-				        				        	$arr = array();
-				        				        	while($row = mysqli_fetch_array($query)){
-				        				        		$arr[] = $row[0];
-				        				        	}
-				        				        	foreach ($val as $result) {
-				        				        		if(!in_array($result, $arr))
-				        				    		    {
-				        				    		        ?>
-				        				    		        <option value="<?php echo $result; ?>"><?php echo $result; ?></option>
-				        				    		        <?php
-				        				    		    }
-				        				        	}
-								                ?>
-	                                    		<!-- <option value="8:00AM - 9:00AM">8:00AM - 9:00AM</option>
-	                                    		<option value="9:00AM - 10:00AM">9:00AM - 10:00AM</option>
-	                                    		<option value="10:00AM - 11:00AM">10:00AM - 11:00AM</option>
-	                                    		<option value="11:00AM - 12:00PM">11:00AM - 12:00PM</option>
-	                                    		<option value="12:00PM - 1:00PM">12:00PM - 1:00PM</option>
-	                                    		<option value="1:00PM - 2:00PM">1:00PM - 2:00PM</option>
-	                                    		<option value="2:00PM - 3:00PM">2:00PM - 3:00PM</option>
-	                                    		<option value="3:00PM - 4:00PM">3:00PM - 4:00PM</option>
-	                                    		<option value="4:00PM - 5:00PM">4:00PM - 5:00PM</option>
-	                                    		<option value="5:00PM - 6:00PM">5:00PM - 6:00PM</option>
-	                                    		<option value="6:00PM - 7:00PM">6:00PM - 7:00PM</option>
-	                                    		<option value="7:00PM - 8:00PM">7:00PM - 8:00PM</option> -->
-	                                    	</select>
-	                                    </div>
-	                                    <p class="help is-danger" id="timemessage"></p>
-	                                </p>
-	                            </div>
 	                            <div class="field">
 	                        		<label class="label">Contact Number</label>
 		                            	<div class="control has-icons-right">
@@ -215,173 +169,168 @@
 	            </div>
 	        </div>
 	    </section>
-
-	    <?php include('../includes/footer.php'); ?>
-	        <script src="../js/jquery.min.js"></script>
-	        <script src="../js/sweetalert.min.js"></script>
-	        <script src="../js/navbar-burger.js"></script>
-	        <script src="../js/moment.js"></script>
-	        <script src="../js/bulma-calendar.min.js"></script>
-	        <script>
-	        	var concern = document.forms['vform']['concern'];
-	        	var concern_err = document.getElementById('concernmessage');
-	        	var datestart = document.forms['vform']['datestart'];
-	        	var datestart_err = document.getElementById('datemessage');
-	        	var timestart = document.forms['vform']['timestart'];
-	        	var time_err = document.getElementById('timemessage');
-	        	var cnumber = document.forms['vform']['cnumber'];
-	        	var cnumber_err = document.getElementById('cnumbermessage');
-	        	var remarks = document.forms['vform']['remarks'];
-	        	var remarks_err = document.getElementById('remarksmessage');
-	        	
-	        	function concernvalid(){
-	        		if(concern.value == ""){
-	                    $('#concern').addClass('is-danger');
-	                    $('#concernicon').addClass('fas fa-exclamation-triangle');
-	                    concern_err.textContent = "Enter your concern";
-	                }
-	                else {
-	                    $('#concern').removeClass('is-danger');
-	                    $('#concernicon').removeClass('fas fa-exclamation-triangle');
-	                    concern_err.textContent = "";
-	                }
-	        	}
-	        	function datestartvalid(){
-	        		if(datestart.value == ""){
-	                    $('#datestart').addClass('is-danger');
-	                    $('#dateicon').addClass('fas fa-exclamation-triangle');
-	                    datestart_err.textContent = "Select the date of appointment";
-	                }
-	                else {
-	                    $('#datestart').removeClass('is-danger');
-	                    $('#dateicon').removeClass('fas fa-exclamation-triangle');
-	                    datestart_err.textContent = "";
-	                }
-	        	}
-	        	function timevalid(){
-	        		if(timestart.value == "Select Time"){
-	                    $('#timedanger').addClass('is-danger');
-	                    time_err.textContent = "Select the time of appointment";
-	                }
-	                else {
-	                    $('#timedanger').removeClass('is-danger');
-	                    time_err.textContent = "";
-	                }
-	        	}
-	        	function cnumbervalid(){
-	        		if(cnumber.value == ""){
-	                    $('#cnumber').addClass('is-danger');
-	                    $('#cnumbericon').addClass('fas fa-exclamation-triangle');
-	                    cnumber_err.textContent = "Enter your contact number";
-	                }
-	                else {
-	                    $('#cnumber').removeClass('is-danger');
-	                    $('#cnumbericon').removeClass('fas fa-exclamation-triangle');
-	                    cnumber_err.textContent = "";
-	                }
-	        	}
-	        	function remarksvalid(){
-	        		if(remarks.value == ""){
-	                    $('#remarks').addClass('is-danger');
-	                    $('#remarksicon').addClass('fas fa-exclamation-triangle');
-	                    remarks_err.textContent = "What is the problem?";
-	                }
-	                else {
-	                    $('#remarks').removeClass('is-danger');
-	                    $('#remarksicon').removeClass('fas fa-exclamation-triangle');
-	                    remarks_err.textContent = "";
-	                }
-	        	}
-	        	function ValidateAll(){
-	        		if((concern.value != "")&&(datestart.value != "")&&(timestart.value != "Select Time")&&(cnumber.value != "")&&(remarks.value != "")){
-	        			var asdasd = $('#vform').serialize();
-	        			$.ajax({
-	                        data:asdasd,
-	                        type: "POST",
-	                        url: "../php/appointment.php",
-	                        success: function(data){
-	                            swal({
-	                              title: "Added Successfully",
-	                              text: "",
-	                              icon: "success",
-	                              closeOnClickOutside: false,
-	                            })
-	                            .then((value) => {
-	                            window.location = '../index.php';
-	                        });
-	                        }
-	                    })
-	        		}
-	        	}
-	        	function Validate(){
-	        		<?php 
-	        		if(isset($_COOKIE['username'])){
-	        			?>
-	        			concernvalid();
-	        			datestartvalid();
-	        			timevalid();
-	        			cnumbervalid();
-	        			remarksvalid();
-	        			ValidateAll();
-	        			<?php
-	        		}
-	        		else{
-	        			?>
-	        			swal('You need to login first','','warning');
-	        			<?php
-	        		}
-	        		
-	        		?>
-	          		return false;
-	        	}
-	        	$('#concern').bind('input', function(){
-	        		concernvalid();
-	        	});
-	        	$('#datestart').bind('input', function(){
-	        		datestartvalid();
-	        	});
-	        	$('#timestart').bind('input', function(){
-	        		timevalid();
-	        	});
-	        	$('#cnumber').bind('input', function(){
-	        		cnumbervalid();
-	        	});
-	        	$('#remarks').bind('input', function(){
-	        		remarksvalid();
-	        	});
-	        	$('#concern').blur('input', function(){
-	        		concernvalid();
-	        	});
-	        	$('#datestart').blur('input', function(){
-	        		datestartvalid();
-	        	});
-	        	$('#timestart').blur('input', function(){
-	        		timevalid();
-	        	});
-	        	$('#cnumber').blur('input', function(){
-	        		cnumbervalid();
-	        	});
-	        	$('#remarks').blur('input', function(){
-	        		remarksvalid();
-	        	});
-	            $('#cnumber').bind('input', function() {
-	                newval = $('#cnumber').val().replace(/[^0-9.]/g, "");
-	                $('#cnumber').val(newval);
-	            });
-	            function handler(e){
-	              alert(e.target.value);
-	            }
-	            document.addEventListener('DOMContentLoaded', function() {
-	                var dt = new Date();
-	                dt.setMonth(dt.getMonth() + 2);
-	                var month = dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate();
-	                var datePickers = bulmaCalendar.attach('[type="date"]', {
-	                    overlay: false,
-	                    minDate: Date(),
-	                    maxDate: month
-	                });
-	                // datePickers now contains an Array of all datePicker instances
-	                // To use Events API jus add a listener like below:
-	                // datepickerInstance.on(event, function(datepicker) {});
-	            });
-	        </script>
+	    <?php include '../includes/footer.php'; ?>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/sweetalert.min.js"></script>
+        <script src="../js/navbar-burger.js"></script>
+        <script src="../js/moment.js"></script>
+        <script src="../js/bulma-calendar.min.js"></script>
+        <script src="../js/jquery.datetimepicker.full.min.js"></script>
+        <script>
+        	var space = /^[A-z]/;
+        	$('#schedule').datetimepicker({
+        	    defaultDate:'+1970/01/02',
+        		minDate:'+1970/01/02',
+        		minTime:'8:00',
+        		maxDate:new Date().setMonth(new Date().getMonth() + 1),
+        		maxTime:'16:00',
+        		step:30,
+        		format:'m/d/Y H:i',
+        		defaultTime:'8:00',
+        	});
+        	var concern = document.forms['vform']['concern'];
+        	var concern_err = document.getElementById('concernmessage');
+        	var schedule = document.forms['vform']['schedule'];
+        	var schedule_err = document.getElementById('schedulemessage');
+        	var cnumber = document.forms['vform']['cnumber'];
+        	var cnumber_err = document.getElementById('cnumbermessage');
+        	var remarks = document.forms['vform']['remarks'];
+        	var remarks_err = document.getElementById('remarksmessage');
+        	
+        	function concernvalid(){
+        		if(concern.value == ""){
+                    $('#concern').addClass('is-danger');
+                    $('#concernicon').addClass('fas fa-exclamation-triangle');
+                    concern_err.textContent = "Enter your concern";
+                }
+                else if(!space.test(concern.value)){
+                	$('#concern').addClass('is-danger');
+                    $('#concernicon').addClass('fas fa-exclamation-triangle');
+                    concern_err.textContent = "Invalid format";
+                }
+                else {
+                    $('#concern').removeClass('is-danger');
+                    $('#concernicon').removeClass('fas fa-exclamation-triangle');
+                    concern_err.textContent = "";
+                }
+        	}
+        	function schedulevalid(){
+        		if(schedule.value == ""){
+                    $('#schedule').addClass('is-danger');
+                    $('#scheduleicon').addClass('fas fa-exclamation-triangle');
+                    schedule_err.textContent = "Select your schedule";
+                }
+                else {
+                    $('#schedule').removeClass('is-danger');
+                    $('#scheduleicon').removeClass('fas fa-exclamation-triangle');
+                    schedule_err.textContent = "";
+                }
+        	}
+        	function cnumbervalid(){
+        		if(cnumber.value == ""){
+                    $('#cnumber').addClass('is-danger');
+                    $('#cnumbericon').addClass('fas fa-exclamation-triangle');
+                    cnumber_err.textContent = "Enter your contact number";
+                }
+                else if(cnumber.value.length < 11){
+                	$('#cnumber').addClass('is-danger');
+                    $('#cnumbericon').addClass('fas fa-exclamation-triangle');
+                    cnumber_err.textContent = "Enter a vaild contact number";
+                }
+                else {
+                    $('#cnumber').removeClass('is-danger');
+                    $('#cnumbericon').removeClass('fas fa-exclamation-triangle');
+                    cnumber_err.textContent = "";
+                }
+        	}
+        	function remarksvalid(){
+        		if(remarks.value == ""){
+                    $('#remarks').addClass('is-danger');
+                    $('#remarksicon').addClass('fas fa-exclamation-triangle');
+                    remarks_err.textContent = "What is the problem?";
+                }
+                else if(!space.test(remarks.value)){
+                	$('#remarks').addClass('is-danger');
+                    $('#remarksicon').addClass('fas fa-exclamation-triangle');
+                    remarks_err.textContent = "Invalid format";
+                }
+                else {
+                    $('#remarks').removeClass('is-danger');
+                    $('#remarksicon').removeClass('fas fa-exclamation-triangle');
+                    remarks_err.textContent = "";
+                }
+        	}
+        	function ValidateAll(){
+        		if((concern.value != "")&&(schedule.value != "")&&(cnumber.value != "")&&(remarks.value != "")&&(space.test(concern.value))&&(cnumber.value.length > 10)&&(space.test(remarks.value))){
+        			var asdasd = $('#vform').serialize();
+        			$.ajax({
+                        data:asdasd,
+                        type: "POST",
+                        url: "../php/appointment.php",
+                        success: function(data){
+                            if(data == 'Success'){
+                        	    swal({
+                        	      title: "Added Successfully",
+                        	      text: "",
+                        	      icon: "success",
+                        	      closeOnClickOutside: false,
+                        	    })
+                        	    .then((value) => {
+                        	    window.location = '../';
+                            	});
+                            }
+                            else{
+                            	swal(data,'','error',{
+                            		closeOnClickOutside:false,
+                            	});
+                            }
+                        }
+                    })
+        		}
+        	}
+        	function Validate(){
+        		<?php 
+        		if(isset($_COOKIE['username'])){
+        			?>
+        			concernvalid();
+        			schedulevalid();
+        			cnumbervalid();
+        			remarksvalid();
+        			ValidateAll();
+        			<?php
+        		}
+        		else{
+        			?>
+        			swal('You need to login first','','warning');
+        			<?php
+        		}
+        		
+        		?>
+          		return false;
+        	}
+        	$('#concern').bind('input', function(){
+        		concernvalid();
+        	});
+        	$('#cnumber').bind('input', function(){
+        		cnumbervalid();
+        	});
+        	$('#remarks').bind('input', function(){
+        		remarksvalid();
+        	});
+        	$('#concern').blur('input', function(){
+        		concernvalid();
+        	});
+        	$('#schedule').blur('input', function(){
+        		schedulevalid();
+        	});
+        	$('#cnumber').blur('input', function(){
+        		cnumbervalid();
+        	});
+        	$('#remarks').blur('input', function(){
+        		remarksvalid();
+        	});
+            $('#cnumber').bind('input', function() {
+                newval = $('#cnumber').val().replace(/[^0-9.]/g, "");
+                $('#cnumber').val(newval);
+            });
+        </script>
