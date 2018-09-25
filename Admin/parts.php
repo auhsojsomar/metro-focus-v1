@@ -135,6 +135,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="activitylog.php">
+                                            <i class="fal fa-pen"></i> Activity Logs
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -325,6 +330,9 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/datatables.min.js"></script>
             <script src="js/ellipsis.js"></script>
             <script>
+                setInterval(function(){
+                    dataTable.ajax.reload(null,false);
+                },1000);
                 var dataTable = $('#partstable').DataTable({
                     "order":[],
                     "ajax":{

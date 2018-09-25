@@ -4,6 +4,8 @@ if(isset($_COOKIE['username'])){
   header('Location: ../');
 }
 ?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- bulma core css -->
 <link rel="icon" href="../../icon.ico">
 <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -74,9 +76,9 @@ if(isset($_COOKIE['username'])){
             </h1>
             <div class="box">
               <div class="field">
-              <label for="label_email">Email Address</label>
+              <label for="label_email">Username</label>
               <p class="control has-icons-left has-icons-right">
-                <input tabindex="1" class="input is-rounded" id="email" name="email" type="text" placeholder="youremail@example.com">
+                <input tabindex="1" class="input is-rounded" id="email" name="email" type="text" placeholder="Username">
                 <span class="icon is-small is-left">
                 <i class="fal fa-envelope"></i>
                 </span>
@@ -140,7 +142,7 @@ if(isset($_COOKIE['username'])){
   <script src="../js/sweetalert.min.js"></script>
   <script src="../js/navbar-burger.js"></script>
   <script>
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    // var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var user = document.forms['loginform']['email'];
     var user_err = document.getElementById('emailmessage');
     var pass = document.forms['loginform']['pass'];
@@ -149,17 +151,12 @@ if(isset($_COOKIE['username'])){
       if (user.value == ''){
         $('#email').addClass('is-danger');
         $('#emailicon').addClass('fal fa-exclamation-triangle');
-        user_err.textContent = "Enter your email";
+        user_err.textContent = "Enter your username";
       }
-      else if(regex.test(user.value)){
+      else {
         $('#email').removeClass('is-danger');
         $('#emailicon').removeClass('fal fa-exclamation-triangle');
         user_err.textContent = "";
-      }
-      else {
-        $('#email').addClass('is-danger');
-        $('#emailicon').addClass('fal fa-exclamation-triangle');
-        user_err.textContent = "Invalid email";
       }
     }
     function passvalid(){
@@ -180,7 +177,7 @@ if(isset($_COOKIE['username'])){
       }
     }
     function validall(){
-      if (($('#email').val() != '')&&(regex.test($('#email').val()))&&($('#pass').val().length != 0)&&($('#pass').val().length > 7)){
+      if (($('#email').val() != '')&&($('#pass').val().length != 0)&&($('#pass').val().length > 7)){
         $.ajax({
                data: $('#loginform').serialize(),
                type: "POST",

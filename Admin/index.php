@@ -1,5 +1,13 @@
 <?php 
 session_start();
+include '../User/includes/db.php';
+$parts = mysqli_query($con,"SELECT SUM(quantity) FROM parts");
+$parts2 = mysqli_fetch_array($parts);
+$accessories = mysqli_query($con,"SELECT SUM(quantity) FROM accessories");
+$accessories2 = mysqli_fetch_array($accessories);
+$user = mysqli_query($con,"SELECT COUNT(*) FROM loginform WHERE status = 'User'");
+$user2 = mysqli_fetch_array($user);
+$total = $parts2[0]+$accessories2[0];
 if($_COOKIE['role'] == 'Admin'){
     ?>
     <!doctype html>
@@ -56,7 +64,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <a class="dropdown-item" href="../User/pages/profile.php">
                                             <i class="fa fa-user icon"></i> Profile </a>
                                         <a class="dropdown-item" href="#">
-                                            <i class="fa fa-bell icon badge"></i> Notification </a>
+                                            <i class="fa fa-bell icon"></i> Notification </a>
                                         <a class="dropdown-item" href="#">
                                             <i class="fa fa-gear icon"></i> Settings </a>
                                         <div class="dropdown-divider"></div>
@@ -131,6 +139,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="activitylog.php">
+                                            <i class="fal fa-pen"></i> Activity Logs
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -140,7 +153,41 @@ if($_COOKIE['role'] == 'Admin'){
                         </div>  
                     </aside>
                     <article class="content dashboard-page animated bounceInLeft">
-                    	
+                    	<section class="info-tiles">
+                    		<div class="tile is-ancestor has-text-centered">
+                    			<div class="tile is-parent">
+                					<article class="tile is-child box is-danger">
+	        					        <p class="title"><?php echo $total ?></p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-archive"></i></span> Stocks</p>
+
+        					        </article>
+                    			</div>
+                    			<div class="tile is-parent">
+                					<article class="tile is-child box is-danger">
+	        					        <p class="title"><?php echo $parts2[0] ?></p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-camera-retro"></i></span> Camera Parts</p>
+        					        </article>
+                    			</div>
+                    			<div class="tile is-parent">
+                					<article class="tile is-child box is-danger">
+	        					        <p class="title"><?php echo $accessories2[0] ?></p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-cogs"></i></span> Camera Accessories</p>
+        					        </article>
+                    			</div>
+                    			<div class="tile is-parent">
+                					<article class="tile is-child box is-danger">
+	        					        <p class="title">100,000</p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-chart-bar"></i></span> Sales</p>
+        					        </article>
+                    			</div>
+                    			<div class="tile is-parent">
+                					<article class="tile is-child box is-danger">
+	        					        <p class="title"><?php echo $user2[0] ?></p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-users"></i></span> Registered Users</p>
+        					        </article>
+                    			</div>
+                    		</div>
+                    	</section>
                     </article>
                     <div class="sidebar-overlay" id="sidebar-overlay"></div>
                     <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>

@@ -134,6 +134,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="activitylog.php">
+                                            <i class="fal fa-pen"></i> Activity Logs
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -256,6 +261,9 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/ellipsis.js"></script>
 
             <script>
+            setInterval(function(){
+                dataTable.ajax.reload(null,false);
+            },1000);
             var dataTable = $('#tabledit').DataTable({
                 "order":[],
                 "ajax":{
@@ -300,22 +308,24 @@ if($_COOKIE['role'] == 'Admin'){
             $(document).on('click','button[name="confirm"]',function(){
                 var user_id2 = $(this).attr("id");
                 $.ajax({
-                     url:"php/appointment/appointmentconfirm.php",
-                        method:"POST",
-                        data:{user_id2:user_id2},
-                        success:function(data)
-                        {
-                            swal({
-                                title: "Confirmed",
-                                text: "",
-                                icon: "success",
-                                closeOnClickOutside: false,
-                            })
-                            .then((value) => {
-                            dataTable.ajax.reload()
+                    url:"php/appointment/appointmentconfirm.php",
+                    method:"POST",
+                    data:{user_id2:user_id2},
+                    success:function(data)
+                    {
+                        dataTable.ajax.reload();
+                        $.ajax({
+                            url:'php/appointment/appointmentmessage.php',
+                            method:'POST',
+                            data:{uid:user_id2},
+                            success:function(num){
+                                swal(num,'','success',{
+                                    closeOnClickOutside:false,
+                                });
+                            }
                         });
-                        }
-                })
+                    }
+                });
             });
             document.addEventListener('DOMContentLoaded',function(){
 

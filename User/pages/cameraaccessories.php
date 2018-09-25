@@ -2,7 +2,14 @@
 session_start();
 include '../includes/db.php';
 $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY id DESC');
+if(isset($_COOKIE['email'])){
+    $user = $_COOKIE['email'];
+    $sql2 = mysqli_query($con,"SELECT SUM(quantity) FROM cart WHERE user = '$user'");
+    $badge = mysqli_fetch_array($sql2);
+}
  ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- bulma core css -->
     <link rel="icon" href="../../icon.ico">
     <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -19,7 +26,7 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
     <link rel="stylesheet" href="../css/footer.css">
 
     <link rel="stylesheet" href="../css/cameraparts.css">
-
+    <link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
     <title>MetroFocus | Camera Parts</title>
     <section class="hero is-dark">
         <div class="hero-head" style="background: #071425;">
@@ -62,59 +69,64 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
                             }
                         </style>
                         <?php 
-									if(isset($_COOKIE['username'])){
-										?>
-                            <div class="navbar-item is-paddingless is-guest">
-                                <a style="color: #FF7100;text-decoration: none;" href="profile.php" class="button thickbox is-text is-nolink is-uppercase">
-                                    <span class="icon is-small">
-												<i class="fal fa-user"></i>
-												</span>
-                                    <span style="
-												display: block;
-												max-width: 200px;
-												overflow: hidden;
-											    white-space: nowrap;
-										        text-overflow: ellipsis;
-												"><?php echo $_COOKIE['username']; ?></span>
+						if(isset($_COOKIE['username'])){
+						?>
+                        <div class="navbar-item is-paddingless is-guest">
+                            <span id="badge" class="badge is-badge-warning is-badge-left" data-badge="<?php echo $badge[0] ?>">
+                                <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
+                                    <span><i class="fal fa-shopping-cart fa-lg"></i></span>
                                 </a>
-                            </div>
-                            <div class="navbar-item is-paddingless is-guest">
-                                <a id="btnhover" style="color: #FFF;text-decoration: none;" href="logout.php" class="button thickbox is-text is-nolink is-uppercase">
-                                    <span class="icon is-small">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    </span>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                            <?php
-									}
-									else{
-										?>
-                                <div class="navbar-item is-paddingless is-guest">
-                                    <a style="color: #FF7100;text-decoration: none;" href="loginpage.php" class="button thickbox is-text is-nolink is-uppercase">
-                                        <span class="icon is-small">
-												<i class="fas fa-sign-in-alt"></i>
-												</span>
-                                        <span>Login</span>
-                                    </a>
-                                </div>
-                                <span class="navbar-item is-paddingless is-guest">
-											or 
+                            </span>
+                        </div>
+                        <div class="navbar-item is-paddingless is-guest">
+                            <a style="color: #FF7100;text-decoration: none;" href="profile.php" class="button thickbox is-text is-nolink is-uppercase">
+                                <span class="icon is-small">
+											<i class="fal fa-user"></i>
+											</span>
+                                <span style="
+											display: block;
+											max-width: 200px;
+											overflow: hidden;
+										    white-space: nowrap;
+									        text-overflow: ellipsis;
+											"><?php echo $_COOKIE['username']; ?></span>
+                            </a>
+                        </div>
+                        <div class="navbar-item is-paddingless is-guest">
+                            <a id="btnhover" style="color: #FFF;text-decoration: none;" href="logout.php" class="button thickbox is-text is-nolink is-uppercase">
+                                <span class="icon is-small">
+                                <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                        <?php
+						}
+						else{
+						?>
+                        <div class="navbar-item is-paddingless is-guest">
+                            <a style="color: #FF7100;text-decoration: none;" href="loginpage.php" class="button thickbox is-text is-nolink is-uppercase">
+                                <span class="icon is-small">
+										<i class="fas fa-sign-in-alt"></i>
 										</span>
-                                <div class="navbar-item is-paddingless is-guest">
-                                    <a id="btnhover" style="color: #FFF;text-decoration: none;" href="signuppage.php" class="button thickbox is-text is-nolink is-uppercase">
-                                        <span class="icon is-small">
-                                        <i class="far fa-pen-square"></i>
-                                        </span>
-                                        <span>Signup</span>
-                                    </a>
-                                </div>
-                                <?php
-									}
-
-							?>
+                                <span>Login</span>
+                            </a>
+                        </div>
+                        <span class="navbar-item is-paddingless is-guest">
+									or 
+								</span>
+                        <div class="navbar-item is-paddingless is-guest">
+                            <a id="btnhover" style="color: #FFF;text-decoration: none;" href="signuppage.php" class="button thickbox is-text is-nolink is-uppercase">
+                                <span class="icon is-small">
+                                <i class="far fa-pen-square"></i>
+                                </span>
+                                <span>Signup</span>
+                            </a>
+                        </div>
+                        <?php
+						}
+						?>
                     </div>
-
                 </nav>
             </div>
         </div>
@@ -122,7 +134,7 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
 
     <section class="hero">
 
-        <div class="hero-body">
+        <div class="hero-body is-hidden-mobile">
             <div class='carousel carousel-animated carousel-animate-slide' data-autoplay="true">
                 <div class='carousel-container'>
                     <div class='carousel-item has-background is-active'>
@@ -156,8 +168,8 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
 
     <div class="main app-content" style="height: 100%;">
         <div class="columns is-mobile">
-            <div class="column is-one-quarter">
-                <aside class="menu is-hidden-mobile">
+            <div class="column is-one-quarter is-hidden-mobile">
+                <aside class="menu">
                     <p class="menu-label">
                         Brand
                     </p>
@@ -228,9 +240,9 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
                             $class = 'has-text-success';
                         }
             			?>
-	            		<div class="col-md-3">
+                        <div class="column is-3 is-narrow">
 	            			<form method="GET" id="vform" name="vform" onsubmit="return Validate()">
-		        			<div class="card">
+		        			<div class="card" style="min-width: 151px;">
 							    <div class="card-image">
 							    	<figure class="image is-4by3">
 							      		<img src="../../Admin/php/accessories/upload/<?php echo $row['image'] ?>" alt="Placeholder image">
@@ -266,7 +278,7 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
 										    display: -webkit-box;
 										    -webkit-line-clamp: 2;
 										    -webkit-box-orient: vertical;
-										    max-width: 200px;">&#8369;<?php echo $row['price'] ?></p>
+										    max-width: 200px;">&#8369;<?php echo number_format($row['price'],2,'.',',') ?></p>
                                             <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
 							        		<!-- <button style="margin-top: -15" class="button is-warning" name="reserve" id=<?php echo $row['id'] ?> type="button">View Details</button> -->
                                             <a class="button button is-warning" href="accessoriesitempage.php?item=<?php echo $row['id'] ?>">View Details</a>
@@ -291,6 +303,21 @@ $sql = mysqli_query($con,'SELECT * FROM accessories WHERE deleted = 0 ORDER BY i
     <script src="../js/navbar-burger.js"></script>
     <script src="../node_modules/bulma-extensions/bulma-carousel/dist/js/bulma-carousel.min.js"></script>
     <script>
+        setInterval(function(){
+           $('.container-fluid').load(' .row');
+        }, 1000);
+        // setInterval(function(){
+        //     $('.menu').load(' .menu-list');
+        // },1000);
+        <?php 
+        if(isset($_COOKIE['username'])){
+            if($badge[0] < 1){
+                ?>
+                    $('#badge').removeClass('badge is-badge-warning is-badge-left');
+                <?php
+            }
+        }
+         ?>
         var carousels = bulmaCarousel.attach(); // carousels now contains an array of all Carousel instances
         // Find output DOM associated to the DOM element passed as parameter
         function findOutputForSlider(element) {

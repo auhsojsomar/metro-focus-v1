@@ -4,6 +4,8 @@ if(isset($_COOKIE['username'])){
 	header('Location: ../');
 }
 ?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- bulma core css -->
 <link rel="icon" href="../../icon.ico">
 <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -101,16 +103,26 @@ if(isset($_COOKIE['username'])){
 						  </p>
 						</div>
 						<div class="field">
-						  <label class="label">Email</label>
+						  <label class="label">Username</label>
 						  <p class="control has-icons-right">
-						    <input maxlength="200" class="input" type="text" placeholder="Email" id="email" name="email">
+						    <input maxlength="200" class="input" type="text" placeholder="Username" id="email" name="email">
 						    <span class="icon is-small is-right">
 						      <i id="emailicon" class=""></i>
 						      <p id="emailmessage" class="help is-danger"></p>
-						      <p id="emailnote" class="note">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
 						    </span>
 						  </p>
 						</div>
+                        <div class="field">
+		            		<label class="label">Contact Number</label>
+		                    <div class="control has-icons-right">
+			                    <input maxlength="11" class="input" id="cnumber" name="cnum" placeholder="e.g. 09487564183">
+			                    	<span class="icon is-small is-right">
+			                    		<i id="cnumbericon" class=""></i>
+			                   		</span>
+			                    	<p class="help is-danger" id="cnumbermessage"></p>
+			                    	<!-- <p class="note">We’ll occasionally send updates about your schedule to this number.</p> -->
+		                    </div>
+                		</div>
 						<div class="field">
 						  <label class="label">Password</label>
 						  <p class="control has-icons-right">
@@ -133,7 +145,7 @@ if(isset($_COOKIE['username'])){
 						  </p>
 						</div>
 						<hr>
-						<p class="note">By clicking “Create an account” below, you agree to our terms of service and privacy statement. We’ll occasionally send you account related emails.</p>
+						<p class="note">By clicking “Create an account” below, you agree to our terms of service and privacy statement. <!-- We’ll occasionally send you account related emails. --></p>
 						<hr>
 						<button class="button is-success" type="submit" name="btnSubmit" >Create an account</button>
 					</form>
@@ -148,7 +160,9 @@ if(isset($_COOKIE['username'])){
 <script src="../js/sweetalert.min.js"></script>
 <script src="../js/navbar-burger.js"></script>
 <script>
-	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	// var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var username = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
+	var cnum = /^09/;
 	var namereg = /^ /;
 	var namereg2 = / $/;
 	var nameregdot = /^\./;
@@ -158,6 +172,8 @@ if(isset($_COOKIE['username'])){
 	var lname_err = document.getElementById('lnamemessage');
 	var email = document.forms['signupform']['email'];
 	var email_err = document.getElementById('emailmessage');
+	var cnumber = document.forms['signupform']['cnumber'];
+	var cnumber_err = document.getElementById('cnumbermessage');
 	var password = document.forms['signupform']['password'];
 	var password_err = document.getElementById('passwordmessage');
 	var cpassword = document.forms['signupform']['cpassword'];
@@ -166,7 +182,7 @@ if(isset($_COOKIE['username'])){
 	function fnamevalid(){
 		newval = $('#fname').val().replace(/[^A-z\s.]/g,"");
         $('#fname').val(newval);
-        if(namereg.test(fname.value) || (nameregdot.test(fname.value))){
+        if(namereg.test(fname.value) || nameregdot.test(fname.value)){
         	$('#fnameicon').addClass('fal fa-exclamation-triangle');
 			$('#fnamemessage').html('Invalid format');
 			$('#fname').addClass('is-danger');
@@ -185,7 +201,7 @@ if(isset($_COOKIE['username'])){
 	function lnamevalid(){
 		newval = $('#lname').val().replace(/[^A-z.\s]/g,"");
         $('#lname').val(newval);
-        if(namereg.test(lname.value) || (nameregdot.test(lname.value))){
+        if(namereg.test(lname.value) || nameregdot.test(lname.value)){
         	$('#lnameicon').addClass('fal fa-exclamation-triangle');
 			$('#lnamemessage').html('Invalid format');
 			$('#lname').addClass('is-danger');
@@ -205,26 +221,50 @@ if(isset($_COOKIE['username'])){
 		$.post('../php/email.php', {'email' : email.value}, function(data) {
 			exist = data;
     		if (email.value == ''){
-		        $('#emailmessage').html('Enter your email');
+		        $('#emailmessage').html('Enter your username');
 		        $('#email').addClass('is-danger');
 		        $('#emailicon').addClass('fal fa-exclamation-triangle');
+	        }
+	        else if(email.value.length < 6){
+	        	$('#email').addClass('is-danger');
+		        $('#emailicon').addClass('fal fa-exclamation-triangle');
+		        $('#emailmessage').html('Username must be more than 6 characters!');
 	        }
 	        else if(data == "Exist"){
 	            $('#email').addClass('is-danger');
 		        $('#emailicon').addClass('fal fa-exclamation-triangle');
-		        $('#emailmessage').html('Email is already used');
+		        $('#emailmessage').html('Username is already used');
 	        }
-	        else if(regex.test(email.value)){
-		        $('#email').removeClass('is-danger');
+	        else if(username.test(email.value)){
+	            $('#email').removeClass('is-danger');
 		        $('#emailicon').removeClass('fal fa-exclamation-triangle');
-	            $('#emailmessage').html('');
+		        $('#emailmessage').html('');
 	        }
 	        else {
 	            $('#email').addClass('is-danger');
 		        $('#emailicon').addClass('fal fa-exclamation-triangle');
-		        $('#emailmessage').html('Invalid Email');
+		        $('#emailmessage').html('Invalid Username ');
 	        }
 	    });
+	}
+	function cnumvalid(){
+		newval = $('#cnumber').val().replace(/[^0-9.]/g, "");
+		$('#cnumber').val(newval);
+		if(cnumber.value == ""){
+            $('#cnumber').addClass('is-danger');
+            $('#cnumbericon').addClass('fas fa-exclamation-triangle');
+            cnumber_err.textContent = "Enter your contact number";
+        }
+        else if(cnumber.value.length < 11 || !cnum.test(cnumber.value)){
+        	$('#cnumber').addClass('is-danger');
+            $('#cnumbericon').addClass('fas fa-exclamation-triangle');
+            cnumber_err.textContent = "Enter a vaild contact number";
+        }
+        else {
+            $('#cnumber').removeClass('is-danger');
+            $('#cnumbericon').removeClass('fas fa-exclamation-triangle');
+            cnumber_err.textContent = "";
+        }
 	}
 	function passwordvalid(){
 		if (password.value.length == 0){
@@ -276,7 +316,7 @@ if(isset($_COOKIE['username'])){
 			$('#lnamemessage').html('Invalid format');
 			$('#lname').addClass('is-danger');
 		}
-		else if((fname.value != "")&&(lname.value != "")&&(email.value != '')&&(regex.test(email.value))&&(password.value.length != 0)&&(password.value.length > 7)&&(cpassword.value.length != 0)&&(cpassword.value == password.value)&&(exist != "Exist")&&(!namereg.test(lname.value))&&(!namereg.test(fname.value))&&(!nameregdot.test(fname.value))&&(!nameregdot.test(lname.value))){
+		else if((fname.value != "")&&(lname.value != "")&&(email.value != '')&&(username.test(email.value))&&(password.value.length != 0)&&(password.value.length > 7)&&(cpassword.value.length != 0)&&(cpassword.value == password.value)&&(exist != "Exist")&&(!namereg.test(lname.value))&&(!namereg.test(fname.value))&&(!nameregdot.test(fname.value))&&(!nameregdot.test(lname.value))&&(cnumber.value.length > 10)&&(cnum.test(cnumber.value))&&(email.value.length > 5)){
 	    	$.ajax({
 	    		data:$('#signupform').serialize(),
 	    		method:"POST",
@@ -296,6 +336,7 @@ if(isset($_COOKIE['username'])){
 		fnamevalid();
 		lnamevalid();
 		emailvalid();
+		cnumvalid();
 		passwordvalid();
 		cpasswordvalid();
 		validall();
@@ -309,6 +350,9 @@ if(isset($_COOKIE['username'])){
 	});
 	$('#email').bind('input', function(){
 	    emailvalid();
+	});
+	$('#cnumber').bind('input', function(){
+	    cnumvalid();
 	});
 	$('#password').bind('input', function(){
 	  passwordvalid();
@@ -324,6 +368,9 @@ if(isset($_COOKIE['username'])){
 	});
 	$('#email').blur(function(){
 		emailvalid();
+	});
+	$('#cnumber').blur(function(){
+		cnumvalid();
 	});
 	$('#password').blur(function(){
 		passwordvalid();

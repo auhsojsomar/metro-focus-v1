@@ -1,3 +1,11 @@
+<?php 
+include 'db.php';
+if(isset($_COOKIE['email'])){
+	$user = $_COOKIE['email'];
+	$sql2 = mysqli_query($con,"SELECT SUM(quantity) FROM cart WHERE user = '$user'");
+	$badge = mysqli_fetch_array($sql2);
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +22,8 @@
 	<link rel="stylesheet" href="./fontawesome/css/fontawesome.css">
 
 	<!-- animate.css animation -->
-	<link rel="stylesheet" href="./css/animate.css">
+	<link rel="stylesheet" href="css/animate.css">
 
 	<link rel="stylesheet" href="./css/home.css">
-
+	<link rel="stylesheet" href="node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
 </head>

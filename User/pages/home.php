@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-		<div class="hero-body">
+		<div class="hero-body animated bounceInLeft">
 			<div class="container has-text-centered">
 				<h1 class="title is-cursor-pointer is-size-1-touch">
 					Metro<span>Focus</span>
@@ -135,7 +135,8 @@
 		<div class="container">
 		<div class="section">
 		<div class="title has-text-centered" style="margin-bottom: 80px;">
-		<a id="bk" href="./pages/appointmentform.php">Book now</a>
+		<!-- <a id="bk" href="./pages/appointmentform.php">Book now</a> -->
+		<h4 class="title">Book Now</h4>
 		</div>
 			<div class="columns">
 			<div class="column is-centered is-narrow is-two-fifths has-text-centered">
@@ -155,6 +156,17 @@
 			</div>
 		</div>
 		</div>
+		<!-- footer divider start -->
+			<section class="section primary-background" style="background-position: bottom;">
+				<div class="container footer-section wow fadeInLeft">
+					<div class="has-text-centered ">
+						<p class="title is-spaced has-text-white">Productivity at its finest!</p>
+						<p class="text is-size-5 has-text-white">get started for free</p>
+					</div>
+					<button id="bknow" class="round-button subscribe subbutton" style="margin: 2rem;">Book now</button>
+				</div>
+			</section>
+		<!-- footer divider end -->
 	</section>
 
 	

@@ -141,17 +141,6 @@
 		                            	</div>
 	                    		</div>
 	                            <div class="field">
-	                        		<label class="label">Contact Number</label>
-		                            	<div class="control has-icons-right">
-		                                	<input maxlength="11" class="input" id="cnumber" name="cnumber" placeholder="e.g. 09487564183">
-		                                    <span class="icon is-small is-right">
-		                                        <i id="cnumbericon" class=""></i>
-		                                    </span>
-		                                    <p class="help is-danger" id="cnumbermessage"></p>
-		                                    <p class="note">We’ll occasionally send updates about your schedule to this number.</p>
-		                            	</div>
-	                    		</div>
-	                            <div class="field">
 	                        		<label class="label">Remarks</label>
 		                            	<div class="control has-icons-right">
 		                                	<textarea class="textarea" id="remarks" name="remarks" placeholder=""></textarea>
@@ -183,7 +172,7 @@
         		minDate:'+1970/01/02',
         		minTime:'8:00',
         		maxDate:new Date().setMonth(new Date().getMonth() + 1),
-        		maxTime:'16:00',
+        		maxTime:'20:00',
         		step:30,
         		format:'m/d/Y H:i',
         		defaultTime:'8:00',
@@ -192,8 +181,6 @@
         	var concern_err = document.getElementById('concernmessage');
         	var schedule = document.forms['vform']['schedule'];
         	var schedule_err = document.getElementById('schedulemessage');
-        	var cnumber = document.forms['vform']['cnumber'];
-        	var cnumber_err = document.getElementById('cnumbermessage');
         	var remarks = document.forms['vform']['remarks'];
         	var remarks_err = document.getElementById('remarksmessage');
         	
@@ -226,23 +213,6 @@
                     schedule_err.textContent = "";
                 }
         	}
-        	function cnumbervalid(){
-        		if(cnumber.value == ""){
-                    $('#cnumber').addClass('is-danger');
-                    $('#cnumbericon').addClass('fas fa-exclamation-triangle');
-                    cnumber_err.textContent = "Enter your contact number";
-                }
-                else if(cnumber.value.length < 11){
-                	$('#cnumber').addClass('is-danger');
-                    $('#cnumbericon').addClass('fas fa-exclamation-triangle');
-                    cnumber_err.textContent = "Enter a vaild contact number";
-                }
-                else {
-                    $('#cnumber').removeClass('is-danger');
-                    $('#cnumbericon').removeClass('fas fa-exclamation-triangle');
-                    cnumber_err.textContent = "";
-                }
-        	}
         	function remarksvalid(){
         		if(remarks.value == ""){
                     $('#remarks').addClass('is-danger');
@@ -261,7 +231,7 @@
                 }
         	}
         	function ValidateAll(){
-        		if((concern.value != "")&&(schedule.value != "")&&(cnumber.value != "")&&(remarks.value != "")&&(space.test(concern.value))&&(cnumber.value.length > 10)&&(space.test(remarks.value))){
+        		if((concern.value != "")&&(schedule.value != "")&&(remarks.value != "")&&(space.test(concern.value))&&(space.test(remarks.value))){
         			var asdasd = $('#vform').serialize();
         			$.ajax({
                         data:asdasd,
@@ -294,7 +264,6 @@
         			?>
         			concernvalid();
         			schedulevalid();
-        			cnumbervalid();
         			remarksvalid();
         			ValidateAll();
         			<?php
@@ -311,9 +280,6 @@
         	$('#concern').bind('input', function(){
         		concernvalid();
         	});
-        	$('#cnumber').bind('input', function(){
-        		cnumbervalid();
-        	});
         	$('#remarks').bind('input', function(){
         		remarksvalid();
         	});
@@ -323,14 +289,7 @@
         	$('#schedule').blur('input', function(){
         		schedulevalid();
         	});
-        	$('#cnumber').blur('input', function(){
-        		cnumbervalid();
-        	});
         	$('#remarks').blur('input', function(){
         		remarksvalid();
         	});
-            $('#cnumber').bind('input', function() {
-                newval = $('#cnumber').val().replace(/[^0-9.]/g, "");
-                $('#cnumber').val(newval);
-            });
         </script>

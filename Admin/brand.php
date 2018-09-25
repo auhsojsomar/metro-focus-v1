@@ -134,6 +134,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="activitylog.php">
+                                            <i class="fal fa-pen"></i> Activity Logs
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="trash.php">
                                             <i class="fal fa-trash"></i> Trash
                                         </a>
@@ -189,14 +194,14 @@ if($_COOKIE['role'] == 'Admin'){
                         <form method="POST" name="vform" id="vform" onsubmit="return Validate();">
                         <div class="field">
                             <label class="label">Brand</label>
-                                <div class="control has-icons-right">
-                                    <input class="input" id="brand" name="brand" placeholder="Brand Name">
-                                        <span class="icon is-small is-right">
-                                            <i id="brandicon" class=""></i>
-                                        </span>
-                                        <p class="help is-danger" id="brandmessage"></p>
-                                </div>
+                            <div class="control has-icons-right">
+                                <input class="input" id="brand" name="brand" placeholder="Brand Name">
+                                    <span class="icon is-small is-right">
+                                        <i id="brandicon" class=""></i>
+                                    </span>
+                                    <p class="help is-danger" id="brandmessage"></p>
                             </div>
+                        </div>
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-success" id="save" type="submit" name="btnSave">Save</button>
@@ -216,7 +221,9 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/datatables.min.js"></script>
             <script src="js/ellipsis.js"></script>
             <script>
-
+            setInterval(function(){
+                dataTable.ajax.reload(null,false);
+            },1000);
             var dataTable = $('#brandtable').DataTable({
                 "order":[],
                 "ajax":{

@@ -1,9 +1,17 @@
 <?php 
   session_start();
+  include '../includes/db.php';
+  if(isset($_COOKIE['email'])){
+    $user = $_COOKIE['email'];
+    $sql2 = mysqli_query($con,"SELECT SUM(quantity) FROM cart WHERE user = '$user'");
+    $badge = mysqli_fetch_array($sql2);
+  }
   if(!isset($_COOKIE['username'])){
     header('Location: ../');
   }
 ?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- bulma core css -->
 <link rel="icon" href="../../icon.ico">
 <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -15,6 +23,7 @@
 <link rel="stylesheet" href="../css/footer.css">
 <link rel="stylesheet" href="../css/profile.css">
 <title>MetroFocus | Profile</title>
+<link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
 <section class="hero is-primary">
   <section class="hero is-dark">
       <div class="hero-head" style="background: #071425;">
@@ -53,6 +62,13 @@
               <?php 
                   if(isset($_COOKIE['username'])){
                     ?>
+                   <div class="navbar-item is-paddingless is-guest">
+                       <span id="badge" class="badge is-badge-warning is-badge-left" data-badge="<?php echo $badge[0] ?>">
+                           <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
+                               <span><i class="fal fa-shopping-cart fa-lg"></i></span>
+                           </a>
+                       </span>
+                   </div>
                     <div class="navbar-item is-paddingless is-guest">
                       <a id="btnhover" style="color: #FFF;text-decoration: none;" href="logout.php" class="button thickbox is-text is-nolink is-uppercase">
                         <span class="icon is-small">
@@ -110,48 +126,48 @@
         </div>
       </div>
 </section>
-<section class="tab-container">
+<div class="tab_header">
   <div class="container">
-    <div class="tabs is-toggle">
+    <div class="tabs is-boxed">
       <ul>
-        <li class="is-active"><a href="" >Account</a></li>
-        <li><a href="">Reviews</a></li>
-        <li><a href="">History</a></li>
+        <li class="item is-active"><a href="#account">Account</a></li>
+        <li class="item"><a href="#history">History</a></li>
       </ul>
     </div>
   </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div userowns="true">
-      <div class="columns">
-        <div class="column is-8 is-9-widescreen">
-          <div class="content">
-            <h2>About Me</h2>
-          </div>
-          <div class="columns">
-            <div class="column">
-              <article class="message">
-                <div class="message-body">
-                  <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="is-divider-vertical is-hidden-mobile"></div>
-        <div class="column">
-          <div class="content">
-            <h2>History</h2>
-          </div>
-          <article class="message is-warning">
-            <div class="message-body">
-              No History
-            </div>
-          </article>
-        </div>
+</div>
+<div id="tab_container">
+  <div class="container_item is-active" data-item="1">
+    <article class="message">
+      <div class="message-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
       </div>
-    </div>
+    </article>
   </div>
-</section>
+  <div class="container_item" data-item="2">
+    gago
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/navbar-burger.js"></script>
 <?php include('../includes/footer.php'); ?>
+<script>
+  <?php 
+  if($badge[0] < 1){
+      ?>
+          $('#badge').removeClass('badge is-badge-warning is-badge-left');
+      <?php
+  }
+   ?>
+
+   $(document).ready(function() {
+     $('.tab_header ul li.item').on('click', function() {
+         var number = $(this).data('option');
+         $('.tab_header ul li.item').removeClass('is-active');
+         $(this).addClass('is-active');
+         $('#tab_container .container_item').removeClass('is-active');
+         $('div[data-item="' + number + '"]').addClass('is-active');
+       });
+   });
+
+</script>

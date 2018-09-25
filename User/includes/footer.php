@@ -43,16 +43,26 @@
 		</div>
 		<a id="elm" title="Back to top" href="#" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
 		<!-- <a title="Back to top" href="#top" class="to-top"><i class="fas fa-chevron-circle-up"></i></a> -->
-	</footer>
+</footer>
 	<!-- footer end -->
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/navbar-burger.js"></script>
-	<script src="js/wow.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/navbar-burger.js"></script>
+	<script src="./js/wow.min.js"></script>
 	<script>
 		new WOW().init();
 	</script>
 	<script>
+	<?php
+		if(isset($_COOKIE['username'])){
+			if($badge[0] < 1){
+			    ?>
+			        $('#badge').removeClass('badge is-badge-warning is-badge-left');
+			    <?php
+			}
+		}
+	 
+	 ?>
 	$(document).ready(function(){
 		var offset = 800;
 		var duration = 600;
@@ -67,6 +77,9 @@
 
 		$('.to-top').click(function(){
 			jQuery('html,body').animate({scrollTop:0},duration);
+		});
+		$('#bknow').click(function(){
+			window.location = 'pages/appointmentform.php';
 		});
 	});
 	</script>

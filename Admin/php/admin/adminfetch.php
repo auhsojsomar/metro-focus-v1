@@ -15,7 +15,7 @@ foreach($result as $row)
     $sub_array[] = $row["username"];
     $sub_array[] = $row["cnumber"];
     $sub_array[] = $row["created"];
-    $sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="button is-info is-small"><i class="fal fa-edit"></i> Edit</button><button type="button" name="delete" id="'.$row["id"].'" class="button is-danger is-small"><i class="fal fa-trash-alt"></i> Delete</button>';
+    $sub_array[] = '<button style="width:40px;" type="button" name="update" id="'.$row["id"].'" class="button is-info is-small"><i class="fal fa-edit"></i> Edit</button><button style="width:40px;" type="button" name="delete" id="'.$row["id"].'" class="button is-danger is-small"><i class="fal fa-trash-alt"></i> Delete</button>';
     $data[] = $sub_array;
 }
 $output = array(

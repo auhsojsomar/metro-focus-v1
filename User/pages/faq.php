@@ -1,10 +1,16 @@
 <?php session_start();
   include '../includes/db.php';
+  if(isset($_COOKIE['email'])){
+    $user = $_COOKIE['email'];
+    $sql2 = mysqli_query($con,"SELECT SUM(quantity) FROM cart WHERE user = '$user'");
+    $badge = mysqli_fetch_array($sql2);
+  }
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MetroFocus | FAQs</title>
   <!-- bulma core css -->
   <link rel="icon" href="../../icon.ico">
@@ -17,6 +23,7 @@
 
   <link rel="stylesheet" href="../css/faq.css">
   <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
 </head>
 <body>
   <div class="faq">
@@ -54,6 +61,13 @@
                 <?php 
                     if(isset($_COOKIE['username'])){
                       ?>
+                      <div class="navbar-item is-paddingless is-guest">
+                         <span id="badge" class="badge is-badge-warning is-badge-left" data-badge="<?php echo $badge[0] ?>">
+                             <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
+                                 <span><i class="fal fa-shopping-cart fa-lg"></i></span>
+                             </a>
+                         </span>
+                     </div>
                       <div class="navbar-item is-paddingless is-guest">
                         <a style="color: #FF7100;text-decoration: none;" href="profile.php" class="button thickbox is-text is-nolink is-uppercase">
                           <span class="icon is-small">
@@ -142,8 +156,19 @@
     </section>
   </div>
   <script src="../node_modules/bulma-extensions/bulma-accordion/dist/js/bulma-accordion.min.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/navbar-burger.js"></script>
   <?php include('../includes/footer.php'); ?>
   <script>
+    <?php 
+    if(isset($_COOKIE['username'])){
+        if($badge[0] < 1){
+            ?>
+                $('#badge').removeClass('badge is-badge-warning is-badge-left');
+            <?php
+        }
+    }
+     ?>
     var accordions = bulmaAccordion.attach(); // accordions now contains an array of all Accordion instances
   </script>
 </body>

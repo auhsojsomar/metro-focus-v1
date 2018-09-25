@@ -4982,7 +4982,7 @@ input[type=submit].btn-block {
 }
 
 .badge {
-    display: inline-block;
+    /*display: inline-block;
     padding: .25em .4em;
     font-size: 75%;
     font-weight: 700;
@@ -4990,7 +4990,7 @@ input[type=submit].btn-block {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .25rem
+    border-radius: .25rem*/
 }
 
 .badge:empty {

@@ -539,3 +539,47 @@ footer .column {
         margin-top: 80px;
     }
 }
+.primary-background {
+    background-color: #071425;
+    color: #fff;
+    margin-bottom: 0px !important;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe {
+    height: 50px;
+    width: 280px;
+    background-color: #FF7100;
+    background-repeat: no-repeat;
+    background-size: 26px 26px;
+    background-position: 39px;
+    padding-left: 51px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.round-button {
+    cursor: pointer;
+    padding: 0 30px;
+    padding-left: 30px;
+    border-radius: 100px;
+    background-clip: padding-box;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: capitalize;
+    outline: none;
+}
+
+.is-size-5 {
+    font-size: 1.25rem !important;
+}

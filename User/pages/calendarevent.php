@@ -58,6 +58,8 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     }
 }
 ?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- bulma core css -->
 <link rel="icon" href="../../icon.ico">
 <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -110,6 +112,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             <?php 
                 if(isset($_COOKIE['username'])){
                   ?>
+                  <div class="navbar-item is-paddingless is-guest">
+                          <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
+                              <span><i class="fal fa-shopping-cart fa-lg"></i></span>
+                          </a>
+                  </div>
                   <div class="navbar-item is-paddingless is-guest">
                     <a style="color: #FF7100;text-decoration: none;" href="profile.php" class="button thickbox is-text is-nolink is-uppercase">
                       <span class="icon is-small">

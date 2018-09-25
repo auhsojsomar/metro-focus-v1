@@ -133,6 +133,11 @@ if($_COOKIE['role'] == 'Admin'){
                                             <i class="fal fa-question-circle"></i> FAQ
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="activitylog.php">
+                                            <i class="fal fa-pen"></i> Activity Logs
+                                        </a>
+                                    </li>
                                     <li class="active">
                                         <a href="#">
                                             <i class="fal fa-trash"></i> Trash
@@ -344,14 +349,36 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/ellipsis.js"></script>
 
             <script>
+                setInterval(function(){
+                    dtbrand.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtcategory.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtparts.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtaccessories.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtfaq.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtadmin.ajax.reload(null,false);
+                },1000);
+                setInterval(function(){
+                    dtclient.ajax.reload(null,false);
+                },1000);
                 var dtbrand = $('#brandtable').DataTable({
+                    "order":[],
                     "ajax":{
                     url:"php/trash/brandtrash.php",
                     type:"POST"
                 },
                     "columnDefs":[
                         {
-                            "targets":[1],
+                            "targets":[1,2],
                             "orderable":false,
                         },
                         {
@@ -383,18 +410,17 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="br_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/branddelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/branddelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data){
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -402,10 +428,11 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtbrand.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
+
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });
@@ -448,18 +475,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="cr_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/categorydelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/categorydelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -467,12 +494,13 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtcategory.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
                         }
+                        else{
+                            return false;
+                        }
                     });
+                    
                 });
                 var dtparts = $('#partstable').DataTable({
                     "ajax":{
@@ -513,18 +541,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="pr_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/partsdelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/partsdelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -532,10 +560,10 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtparts.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });
@@ -578,18 +606,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="ar_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/accessoriesdelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/accessoriesdelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -597,10 +625,10 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtaccessories.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });
@@ -643,18 +671,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="ad_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/admindelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/admindelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -662,10 +690,10 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtadmin.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });
@@ -708,18 +736,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="cl_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/clientdelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/clientdelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -727,10 +755,10 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtclient.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });
@@ -773,18 +801,18 @@ if($_COOKIE['role'] == 'Admin'){
                 });
                 $(document).on('click','button[name="fq_delete"]',function(){
                     var id = $(this).attr('id');
-                    $.ajax({
-                        url:'php/trash/faqdelete.php',
-                        method:'POST',
-                        data:{id:id},
-                        success:function(data)
-                        {
-                            swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
-                                dangerMode:true,
-                                buttons:true,
-                            })
-                            .then((value) => {
-                                if(value){
+                    swal('Are you sure you want to delete?','you can\'t recover this data','warning',{
+                        dangerMode:true,
+                        buttons:true,
+                    })
+                    .then((value) => {
+                        if(value){
+                            $.ajax({
+                                url:'php/trash/faqdelete.php',
+                                method:'POST',
+                                data:{id:id},
+                                success:function(data)
+                                {
                                     swal('Data Deleted','','success',{
                                         closeOnClickOutside:false,
                                     })
@@ -792,10 +820,10 @@ if($_COOKIE['role'] == 'Admin'){
                                         dtfaq.ajax.reload();
                                     });
                                 }
-                                else{
-                                    return false;
-                                }
                             });
+                        }
+                        else{
+                            return false;
                         }
                     });
                 });

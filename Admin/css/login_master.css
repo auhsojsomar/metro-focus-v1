@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.container{
+    margin: 0 auto;
+    position: relative;
+}
+
+.img-bg{
+    background: url('../images/black-wallpaper.jpg') no-repeat center fixed;
+    background-size: cover;
+}
