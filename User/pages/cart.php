@@ -152,8 +152,8 @@ $number = mysqli_num_rows($sql4);
 										white-space: nowrap;
 										text-overflow: ellipsis;
 								"><?php echo $row[1] ?><br><span style="font-size: 17px"><?php echo $row[7] ?></span></td>
-								<td style="width: 10%"><?php echo number_format($row[2],2,'.',',') ?></td>
-								<td id="price" style="width: 10%;"><?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
+								<td style="width: 10%">&#8369;<?php echo number_format($row[2],2,'.',',') ?></td>
+								<td id="price" style="width: 10%;">&#8369;<?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
 								<td style="float: right;">
 									<input readonly id="<?php echo $row[5] ?>" name="qquantity[]" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
 									<button id="<?php echo $row[5] ?>" class="button is-danger is-small"style="margin-top: 4px;"name="delete" id="delete" type="button"><i class="fal fa-trash"></i></button>
@@ -181,8 +181,8 @@ $number = mysqli_num_rows($sql4);
 										white-space: nowrap;
 										text-overflow: ellipsis;
 								"><?php echo $row[1] ?><br><span style="font-size: 17px"><?php echo $row[7] ?></span></td>
-								<td style="width: 10%"><?php echo number_format($row[2],2,'.',',') ?></td>
-								<td id="price" style="width: 10%;"><?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
+								<td style="width: 10%">&#8369;<?php echo number_format($row[2],2,'.',',') ?></td>
+								<td id="price" style="width: 10%;">&#8369;<?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
 								<td style="float: right;">
 									<input readonly id="<?php echo $row[5] ?>" name="qquantity[]" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
 									<button id="<?php echo $row[5] ?>" class="button is-danger is-small"style="margin-top: 4px;"name="delete" id="delete" type="button"><i class="fal fa-trash"></i></button>
@@ -196,7 +196,7 @@ $number = mysqli_num_rows($sql4);
 					}
 					?>
 				<button disabled class="button reserve" type="button" id="showReserveModal">Reserve</button>
-				<span id="sub">Sub Total: <span><?php echo number_format($total,2,'.',',') ?></span></span>
+				<span id="sub"> Total: <span>&#8369; <?php echo number_format($total,2,'.',',') ?></span></span>
 				<input type="hidden" name="cart_count" value="<?php echo $number ?>">
 				</form>
 			</div>

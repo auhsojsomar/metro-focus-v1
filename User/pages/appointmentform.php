@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+if(isset($_COOKIE['email'])){
+  include '../includes/db.php';
+  $user = $_COOKIE['email'];
+  $sql = mysqli_query($con,"SELECT SUM(quantity) FROM cart WHERE user = '$user'");
+  $num = mysqli_fetch_array($sql);
+}
+ ?>
 <!-- bulma core css -->
 		<link rel="icon" href="../../icon.ico">
 	    <link rel="stylesheet" href="../bulma/css/bulma.min.css">
@@ -10,6 +18,7 @@
 	    <link rel="stylesheet" href="../css/footer.css">
 	    <link rel="stylesheet" href="../css/bulma-calendar.min.css">
 	    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
+	    <link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
 
 	    <title>MetroFocus | Appointment</title>
 		
@@ -50,6 +59,13 @@
 		            <?php 
 		                if(isset($_COOKIE['username'])){
 		                  ?>
+		                  <div class="navbar-item is-paddingless is-guest">
+		                      <span id="badge" class="badge is-badge-warning is-badge-left" data-badge="<?php echo $num[0] ?>">
+		                          <a id="cart" style="color: #FF7100;text-decoration: none;" href="cart.php" class="button thickbox is-text is-nolink is-uppercase">
+		                              <span><i class="fal fa-shopping-cart fa-lg"></i></span>
+		                          </a>
+		                      </span>
+		                  </div>
 		                  <div class="navbar-item is-paddingless is-guest">
 		                    <a style="color: #FF7100;text-decoration: none;" href="profile.php" class="button thickbox is-text is-nolink is-uppercase">
 		                      <span class="icon is-small">
@@ -166,6 +182,15 @@
         <script src="../js/bulma-calendar.min.js"></script>
         <script src="../js/jquery.datetimepicker.full.min.js"></script>
         <script>
+        	<?php 
+        	if(isset($_COOKIE['email'])){
+        	  if($num[0] < 1){
+        	      ?>
+        	          $('#badge').removeClass('badge is-badge-warning is-badge-left');
+        	      <?php
+        	  }
+        	}
+        	?>
         	var space = /^[A-z]/;
         	$('#schedule').datetimepicker({
         	    defaultDate:'+1970/01/02',
