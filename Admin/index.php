@@ -129,7 +129,7 @@ if($_COOKIE['role'] == 'Admin'){
                                                 <a href="admin.php"> Admin</a>
                                             </li>
                                             <li>
-                                                <a href="client.php"> Client</a>
+                                                <a href="client.php"> Registered Users</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -155,13 +155,19 @@ if($_COOKIE['role'] == 'Admin'){
                     <article class="content dashboard-page animated bounceInLeft">
                     	<section class="info-tiles">
                     		<div class="tile is-ancestor has-text-centered">
-                    			<div class="tile is-parent">
+                    			<!-- <div class="tile is-parent">
                 					<article class="tile is-child box is-danger">
 	        					        <p class="title"><?php echo $total ?></p>
-                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-archive"></i></span> Stocks</p>
+                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-archive"></i></span> Sales</p>
 
         					        </article>
-                    			</div>
+                    			</div> -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child box is-danger">
+                                        <p class="title">100,000</p>
+                                        <p class="subtitle"><span class="icon is-small"><i class="fal fa-chart-bar"></i></span> Sales</p>
+                                    </article>
+                                </div>
                     			<div class="tile is-parent">
                 					<article class="tile is-child box is-danger">
 	        					        <p class="title"><?php echo $parts2[0] ?></p>
@@ -176,19 +182,20 @@ if($_COOKIE['role'] == 'Admin'){
                     			</div>
                     			<div class="tile is-parent">
                 					<article class="tile is-child box is-danger">
-	        					        <p class="title">100,000</p>
-                                		<p class="subtitle"><span class="icon is-small"><i class="fal fa-chart-bar"></i></span> Sales</p>
-        					        </article>
-                    			</div>
-                    			<div class="tile is-parent">
-                					<article class="tile is-child box is-danger">
 	        					        <p class="title"><?php echo $user2[0] ?></p>
                                 		<p class="subtitle"><span class="icon is-small"><i class="fal fa-users"></i></span> Registered Users</p>
         					        </article>
                     			</div>
+                                
                     		</div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <div id="chartContainer" style="height: 450px; width: 100%;"></div>
+                                </article>
+                            </div>
                     	</section>
                     </article>
+                    
                     <div class="sidebar-overlay" id="sidebar-overlay"></div>
                     <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                     <div class="mobile-menu-handle"></div> 
@@ -196,6 +203,59 @@ if($_COOKIE['role'] == 'Admin'){
             </div>
             <script src="js/vendor.js"></script>
             <script src="js/app.js"></script>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            <script>
+            window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title:{
+                    text: "Company Performace"
+                },
+                axisX: {
+                    valueFormatString: "MMM DD, YY"
+                },
+                axisY: {
+                    title: "Percentage",
+                    includeZero: false,
+                    
+                },
+                legend:{
+                    cursor: "pointer",
+                    fontSize: 16,
+                    itemclick: toggleDataSeries
+                },
+                toolTip:{
+                    shared: true
+                },
+                data: [{
+                    name: "Sales",
+                    type: "spline",
+                    yValueFormatString: "#0.## °C",
+                    showInLegend: true,
+                    dataPoints: [
+                        { x: new Date(2018,8,11), y: 2000 },
+                        { x: new Date(2017,8,18), y: 1800 },
+                        { x: new Date(2017,8,26), y: 1750 },
+                        { x: new Date(2017,8,25), y: 1600 },
+                        { x: new Date(2017,8,31), y: 1700 }
+                    ]
+                },
+                
+                ]
+            });
+            chart.render();
+            function toggleDataSeries(e){
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else{
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+
+            }
+            </script>
         </body>
     </html>
     <?php
@@ -205,3 +265,6 @@ else{
 }
 
  ?>
+
+
+ <!--  -->

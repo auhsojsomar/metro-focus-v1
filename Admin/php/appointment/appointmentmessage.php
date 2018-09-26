@@ -1,6 +1,6 @@
 <?php 
     include '../../../User/includes/db.php';
-    $id = $_POST['uid'];
+    // $id = $_POST['uid'];
     $sql = mysqli_query($con,"SELECT loginform.cnumber,firstname,schedule FROM loginform,appointment WHERE appointment.status = 'Confirmed' AND loginform.username = appointment.username AND appointment.username = (SELECT username FROM appointment WHERE id = $id)LIMIT 1");
     $row = mysqli_fetch_array($sql);
     $cnumber = $row[0];
@@ -8,7 +8,7 @@
     $datetime = $row[2];
     $date = date("F d Y",strtotime($datetime));
     $time = date("g:i A",strtotime($datetime));
-    $message = "Hi $firstname, This is the confirmation of your appointment on $date at $time \n\n --Metro Focus--";
+    $message = "Hi $firstname, This is the confirmation of your appointment on $date at $time";
     // itexmo.com
     function itexmo($number,$message,$apicode){
     $url = 'https://www.itexmo.com/php_api/api.php';

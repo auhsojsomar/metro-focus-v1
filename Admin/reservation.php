@@ -124,7 +124,7 @@ if($_COOKIE['role'] == 'Admin'){
                                                 <a href="admin.php"> Admin</a>
                                             </li>
                                             <li>
-                                                <a href="client.php"> Client</a>
+                                                <a href="client.php"> Registered Users</a>
                                             </li>
                                         </ul>
                                     </li>

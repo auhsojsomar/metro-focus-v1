@@ -124,7 +124,7 @@ if($_COOKIE['role'] == 'Admin'){
                                                 <a href="admin.php"> Admin</a>
                                             </li>
                                             <li class="active">
-                                                <a href="#"> Client</a>
+                                                <a href="#"> Registered Users</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -149,13 +149,13 @@ if($_COOKIE['role'] == 'Admin'){
                     </aside>
                     <article class="content animated bounceInLeft">
                         <div class="title-block">
-                            <h1 class="title"> Client</h1>
-                            <button type="button" class="button is-success" id="clientadd">
+                            <h1 class="title"> Registered Users</h1>
+                            <!-- <button type="button" class="button is-success" id="clientadd">
                                 <span class="icon is-small">
                                       <i class="fal fa-plus-circle"></i>
                                     </span>
-                                    <span> Add Client</span>
-                            </button>
+                                    <span> Add Users</span>
+                            </button> -->
                         </div>
                         <section class="section" style="padding-top:0px;">
                             <div class="row">
@@ -193,7 +193,7 @@ if($_COOKIE['role'] == 'Admin'){
                 <div class="modal-background"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <h1 class="modal-card-title" id="clienttitle">Add Client</h1>
+                        <h1 class="modal-card-title" id="clienttitle">Edit User</h1>
                     </header>
                     <section class="modal-card-body">
                         <form method="POST" name="vform" id="vform" onsubmit="return Validate();" enctype="multipart/form-data">
@@ -615,7 +615,7 @@ if($_COOKIE['role'] == 'Admin'){
                        $('#cnumber').val(data.cnumber);
                        // $('#password').val(data.password);
                        // $('#cpassword').val(data.password);
-                       $('#clienttitle').html('Edit Client');
+                       $('#clienttitle').html('Edit User');
                        $('#user_id').val(user_id);
                        $('#operation').val('Edit');
                     }

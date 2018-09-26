@@ -1,7 +1,7 @@
 <?php
 include '../../../User/includes/db.php';
 $output = array();
-$query = "SELECT * FROM loginform  WHERE deleted = 0 AND status = 'Client' ORDER BY id DESC";
+$query = "SELECT * FROM loginform  WHERE deleted = 0 AND status = 'User' ORDER BY id DESC";
 $statement = $connection->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();

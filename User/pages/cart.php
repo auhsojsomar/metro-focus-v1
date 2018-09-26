@@ -27,6 +27,7 @@ $number = mysqli_num_rows($sql4);
 	<link rel="stylesheet" href="../css/footer.css">
 	<link rel="stylesheet" href="../css/jquery.nice-number.css">
 	<link rel="stylesheet" href="../css/cart.css">
+	<link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
 	<link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
 </head>
 <style>
@@ -154,7 +155,7 @@ $number = mysqli_num_rows($sql4);
 								<td style="width: 10%"><?php echo number_format($row[2],2,'.',',') ?></td>
 								<td id="price" style="width: 10%;"><?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
 								<td style="float: right;">
-									<input readonly id="<?php echo $row[5] ?>" name="qquantity" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
+									<input readonly id="<?php echo $row[5] ?>" name="qquantity[]" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
 									<button id="<?php echo $row[5] ?>" class="button is-danger is-small"style="margin-top: 4px;"name="delete" id="delete" type="button"><i class="fal fa-trash"></i></button>
 								</td>
 							</tr>
@@ -183,7 +184,7 @@ $number = mysqli_num_rows($sql4);
 								<td style="width: 10%"><?php echo number_format($row[2],2,'.',',') ?></td>
 								<td id="price" style="width: 10%;"><?php echo number_format($row[2]*$row[3],2,'.',',') ?></td>
 								<td style="float: right;">
-									<input readonly id="<?php echo $row[5] ?>" name="qquantity" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
+									<input readonly id="<?php echo $row[5] ?>" name="qquantity[]" type="number" min="1" max="<?php echo $row[4] ?>" value="<?php echo $row[3] ?>">
 									<button id="<?php echo $row[5] ?>" class="button is-danger is-small"style="margin-top: 4px;"name="delete" id="delete" type="button"><i class="fal fa-trash"></i></button>
 								</td>
 							</tr>
@@ -201,36 +202,39 @@ $number = mysqli_num_rows($sql4);
 			</div>
 		</div>
 	</section>
-	<section class="section">
-		<div class="container">
-			<div class="modal">
-				<div class="modal-background"></div>
-				<div class="modal-card">
-					<header class="modal-card-head">
-						<p class="modal-card-title">Modal title</p>
-						<button class="delete" aria-label="close"></button>
-					</header>
-				</div>
-				<div class="modal-card-body">
-					<!-- content -->
-					<div class="columns is-mobile">
-					   
-						<div class="column"></div>
-						<div class="column"></div>
-					</div>
-				</div>
-				<footer class="modal-card-foot">
-					<button class="button is-success">Confirm</button>
-					<button class="button">Cancel</button>
-				</footer>
-			</div>
-		</div>
-	</section>
+	<div class="modal">
+	  <div class="modal-background"></div>
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Reservation</p>
+	            <button class="delete" aria-label="close"></button>
+	        </header>
+	        <section class="modal-card-body">
+	            <form method="POST" id="vform" onsubmit="return Validate();">
+	            <div class="field">
+	                <label class="label">Schedule</label>
+	                    <div class="control has-icons-right">
+	                        <input readonly maxlength="200" class="input" type="text" id="schedule" name="schedule">
+	                        <span class="icon is-small is-right">
+	                            <i id="scheduleicon" class=""></i>
+	                        </span>
+	                        <p class="help is-danger" id="schedulemessage"></p>
+	                    </div>
+	            </div>
+	        </section>
+	        <footer class="modal-card-foot">
+	            <button class="button is-success" type="submit">Save</button>
+	            <button class="button" id="modal-close" type="button">Cancel</button>
+	        </footer>
+	        </form>
+	    </div>
+	</div>
 	<script src="../node_modules/bulma-extensions/bulma-accordion/dist/js/bulma-accordion.min.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/navbar-burger.js"></script>
 	<script src="../js/jquery.nice-number.js"></script>
 	<script src="../js/sweetalert.min.js"></script>
+	<script src="../js/jquery.datetimepicker.full.min.js"></script>
 	<?php include('../includes/footer.php'); ?>
 	<script>
 		<?php 
@@ -240,75 +244,130 @@ $number = mysqli_num_rows($sql4);
 			<?php
 		}
 		 ?>
-		$(document).ready(function(){
-			$('input[type="number"]').niceNumber({
-			// auto resize the number input
-			  autoSize: false,
+		$('input[type="number"]').niceNumber({
+		// auto resize the number input
+		  autoSize: false,
 
-			  // the number of extra character
-			  autoSizeBuffer: 2,
+		  // the number of extra character
+		  autoSizeBuffer: 2,
 
-			  // custom button text
-			  buttonDecrement: '-',
-			  buttonIncrement: "+",
+		  // custom button text
+		  buttonDecrement: '-',
+		  buttonIncrement: "+",
 
-			  // 'around', 'left', or 'right'
-			  buttonPosition: 'around'
-			});
-			$('button[name="delete"]').click(function() {
-			   var id = $(this).attr('id');
-			   $.ajax({
-				url:'../php/cartdelete.php',
-				method:'POST',
-				data:{uid:id},
-				success:function(val){
-				   location.reload();
-				}
-			   });
-			});
-			$('.nice-number').click(function(){
-				var id = $(this).find('input').attr('id');
-				var quantity = $(this).find('input[type="number"]').val();
-				$.ajax({
-				url:'../php/cartquantity.php',
-				method:'POST',
-				data:{uid:id,quan:quantity},
-				success:function(val){
-					location.reload();
-				}
-			   });
-			});
-			var total = <?php echo $total ?>;
-			if(total < 1){
-				$('.button.reserve').prop('disabled',true);
-			}
-			else {
-				$('.button.reserve').prop('disabled',false);
-				
-			}
-			// $('.button.reserve').click(function(){
-			//      var vform = $('#fer').serialize();
-			//      $.ajax({
-			//         url:'../php/cartadd.php',
-			//         method:'POST',
-			//         data:vform,
-			//         success:function(data){
-			//             swal('Wait for the confirmation','','success',{
-			//                 closeOnClickOutside:false,
-			//             })
-			//             .then((value) => {
-			//                 window.location = '../';
-			//             });
-			//         }
-			//      });
-			// });
-
-			$('#showReserveModal').click(function(){
-				$('.modal').addClass('is-active');
-			});
-
-			$('')
+		  // 'around', 'left', or 'right'
+		  buttonPosition: 'around'
 		});
+		$('button[name="delete"]').click(function() {
+		   var id = $(this).attr('id');
+		   $.ajax({
+			url:'../php/cartdelete.php',
+			method:'POST',
+			data:{uid:id},
+			success:function(val){
+			   location.reload();
+			}
+		   });
+		});
+		$('.nice-number').find('button[type="button"]').click(function(){
+			var id = $(this).siblings('input').attr('id');
+			var quantity = $(this).siblings('input[type="number"]').val();
+			$.ajax({
+			url:'../php/cartquantity.php',
+			method:'POST',
+			data:{uid:id,quan:quantity},
+			success:function(val){
+				location.reload();
+			}
+		   });
+		});
+		var total = <?php echo $total ?>;
+		if(total < 1){
+			$('.button.reserve').prop('disabled',true);
+		}
+		else {
+			$('.button.reserve').prop('disabled',false);
+			
+		}
+		// $('.button.reserve').click(function(){
+		//      var vform = $('#fer').serialize();
+		//      $.ajax({
+		//         url:'../php/cartadd.php',
+		//         method:'POST',
+		//         data:vform,
+		//         success:function(data){
+		//             swal('Wait for the confirmation','','success',{
+		//                 closeOnClickOutside:false,
+		//             })
+		//             .then((value) => {
+		//                 window.location = '../';
+		//             });
+		//         }
+		//      });
+		// });
+
+		$('#showReserveModal').click(function(){
+			$('.modal').addClass('is-active');
+		});
+		$('#modal-close').click(function(){
+			$('.modal').removeClass('is-active');
+		});
+		$('.delete').click(function(){
+			$('.modal').removeClass('is-active');
+		});
+		$('#schedule').datetimepicker({
+		  defaultDate:'+1970/01/02',
+		  minDate:'+1970/01/02',
+		  minTime:'8:00',
+		  maxDate:new Date().setMonth(new Date().getMonth() + 1),
+		  maxTime:'20:00',
+		  step:30,
+		  format:'m/d/Y H:i',
+		  defaultTime:'8:00',
+		});
+		function schedulevalid(){
+		  if($('#schedule').val() == ""){
+		      $('#schedule').addClass('is-danger');
+		      $('#scheduleicon').addClass('fas fa-exclamation-triangle');
+		      $('#schedulemessage').html("Select your schedule");
+		  }
+		  else {
+		      $('#schedule').removeClass('is-danger');
+		      $('#scheduleicon').removeClass('fas fa-exclamation-triangle');
+		      $('#schedulemessage').html("");
+		  }
+		}
+		function clear(){
+		  $('#schedule').val('');
+		  $('#schedule').removeClass('is-danger');
+		  $('#scheduleicon').removeClass('fas fa-exclamation-triangle');
+		  $('#schedulemessage').html("");
+		}
+		function valid(){
+		  if($('#schedule').val() != ""){
+		    var vform = $('#fer').serializeArray();
+		    var d = $('#schedule').val();
+		    vform.push({name: 'rdate', value: d});
+			    $.ajax({
+				    url:'../php/cartadd.php',
+				    method:'POST',
+				    data:vform,
+				    success:function(data){
+					    swal('Wait for the confirmation','','success',{
+					    closeOnClickOutside:false,
+			    	})
+				    .then((value) => {
+				        window.location = '../';
+				    });
+			    	}
+			    });
+		  	}
+		}
+		function Validate(){
+		  schedulevalid();
+		  valid();
+		  return false;
+		}
 	</script>
 </body>
 </html>
