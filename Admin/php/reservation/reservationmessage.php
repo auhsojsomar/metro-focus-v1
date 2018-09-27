@@ -1,15 +1,18 @@
 <?php 
     include '../../../User/includes/db.php';
-    $id = $_POST['uid'];
-    $sql = mysqli_query($con,"");
+    // $id = $_POST['uid'];
+    $id = 211;
+    $sql = mysqli_query($con,"SELECT loginform.firstname,parts.name,parts.price,reservation.reservationdate,loginform.cnumber FROM loginform,reservation,parts WHERE parts.id = reservation.itemid AND reservation.username = loginform.username AND reservation.id = $id");
     $row = mysqli_fetch_array($sql);
-    $cnumber = $row[0];
-    $firstname = $row[1];
-    $datetime = $row[2];
+    $firstname = $row[0];
+    $name = $row[1];
+    $price = $row[2];
+    $datetime = $row[3];
+    $cnumber = $row[4];
     $date = date("F d Y",strtotime($datetime));
     $time = date("g:i A",strtotime($datetime));
-    $message = "Hi $firstname, This is the confirmation of your appointment on $date at $time \n\n --Metro Focus--";
-    // Hi (name ng customer)! This message is the confirmation that your item which is/are the (item name) is already reserved for you and costs (presyo). We remind that you will get the item on (date at time nila kukunin)
+    // $message = "Hi $firstname, This is the confirmation of your appointment on $date at $time \n\n --Metro Focus--";
+    $message =  "Hi $firstname! This message is the confirmation that your item which is/are the $name is already reserved for you and costs ₱".number_format($price,2,'.',',')." .We remind that you will get the item on $date at $time \n\n --Metro Focus--";
     // itexmo.com
     // function itexmo($number,$message,$apicode){
     // $url = 'https://www.itexmo.com/php_api/api.php';
@@ -89,7 +92,7 @@
         $sendMessageRequest1
         // $sendMessageRequest2
     ]);
-    // print_r($sendMessages);
+    print_r($sendMessages);
 
-    echo "Message Sent!";
+    // echo "Message Sent!";
  ?>
