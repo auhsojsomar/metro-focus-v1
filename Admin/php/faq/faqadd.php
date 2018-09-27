@@ -8,4 +8,8 @@
 	else{
 		echo "Error";
 	}
+	$user = $_COOKIE['email'];
+	date_default_timezone_set('Asia/Manila');
+	$date = date('n/j/Y g:i A');
+	mysqli_query($con,"INSERT INTO activitylogs (name,action,datemod,type,user)VALUES('$question','Added','$date','FAQ','$user')");
  ?>

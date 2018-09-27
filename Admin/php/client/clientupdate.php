@@ -25,4 +25,8 @@
 	else{
 		echo $row[0];
 	}
+	$user = $_COOKIE['email'];
+	date_default_timezone_set('Asia/Manila');
+	$date = date('n/j/Y g:i A');
+	mysqli_query($con,"INSERT INTO activitylogs (name,action,datemod,type,user)VALUES('$email','Edited','$date','User','$user')");
 ?>

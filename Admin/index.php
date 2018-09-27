@@ -203,7 +203,7 @@ if($_COOKIE['role'] == 'Admin'){
             </div>
             <script src="js/vendor.js"></script>
             <script src="js/app.js"></script>
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            <script src="js/canvasjs.min.js"></script>
             <script>
             window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer", {

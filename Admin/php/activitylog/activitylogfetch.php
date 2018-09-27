@@ -1,7 +1,7 @@
 <?php 
 	include '../../../User/includes/db.php';
 	$output = array('data' => array());
-	$query = mysqli_query($con,"SELECT * FROM loginform ORDER BY id DESC");
+	$query = mysqli_query($con,"SELECT * FROM activitylogs ORDER BY id DESC");
 	while($row = mysqli_fetch_array($query)){
 		$output['data'][] = array(
 			$row[1],

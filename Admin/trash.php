@@ -288,7 +288,7 @@ if($_COOKIE['role'] == 'Admin'){
                                         <div class="card">
                                             <div class="card-block">
                                                 <div class="card-title-block">
-                                                    <h3 class="title">Client</h3>
+                                                    <h3 class="title">Registered Users</h3>
                                                 </div>
                                                 <section class="example">
                                                     <div class="table-responsive">

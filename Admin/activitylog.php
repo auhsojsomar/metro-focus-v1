@@ -170,10 +170,11 @@ if($_COOKIE['role'] == 'Admin'){
                                                     <table id="table" class="table table-bordered table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>User</th>
+                                                            <th>Name</th>
                                                             <th>Action</th>
                                                             <th>Date modified</th>
                                                             <th>Type</th>
+                                                            <th>User</th>
                                                             <th>Description</th>
                                                         </tr>
                                                     </thead>
@@ -200,7 +201,7 @@ if($_COOKIE['role'] == 'Admin'){
             <script src="js/ellipsis.js"></script>
             <script>
                 setInterval(function(){
-                    dataTable.ajax.reload();
+                    dataTable.ajax.reload(null,false);
                 },1000);
                 var dataTable = $('#table').DataTable({
                     "order":[],
@@ -210,15 +211,11 @@ if($_COOKIE['role'] == 'Admin'){
                     },
                     "columnDefs":[
                         {
-                            "targets":[0],
-                            "orderable":false,
-                        },
-                        {
-                            "targets":[0],
+                            "targets":[0,1,2,3,4,5],
                             "render":$.fn.dataTable.render.ellipsis(25),
                         },
                         {
-                            "targets":[0],
+                            "targets":[0,1,2,3,4,5],
                             "className":'dt-center',
                         },
                     ],

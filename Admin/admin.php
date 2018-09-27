@@ -169,7 +169,7 @@ if($_COOKIE['role'] == 'Admin'){
                                                         <tr>
                                                             <th>First&nbspName</th>
                                                             <th>Last&nbspName</th>
-                                                            <th>Email</th>
+                                                            <th>Username</th>
                                                             <th>Contact&nbspNumber</th>
                                                             <th>Date&nbspcreated</th>
                                                             <th style="text-align: center;width: 15%;">Action</th>
@@ -218,9 +218,9 @@ if($_COOKIE['role'] == 'Admin'){
                                 </div>
                         </div>
                         <div class="field">
-                            <label class="label">Email</label>
+                            <label class="label">Username</label>
                                 <div class="control has-icons-right">
-                                    <input maxlength="200" class="input" id="email" name="email" placeholder="e.g. youremail@gmail.com">
+                                    <input maxlength="200" class="input" id="email" name="email" placeholder="Username">
                                         <span class="icon is-small is-right">
                                             <i id="emailicon" class=""></i>
                                         </span>
@@ -277,7 +277,9 @@ if($_COOKIE['role'] == 'Admin'){
                 setInterval(function(){
                     dataTable.ajax.reload(null,false);
                 },1000);
-                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                // var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                var regex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
+                var num = /^09/;
                 var space = /^ /;
                 var space2 = / $/;
                 var dot = /^\./;
@@ -340,6 +342,11 @@ if($_COOKIE['role'] == 'Admin'){
                         $('#cnumber').addClass('is-danger');
                         $('#cnumbericon').addClass('fas fa-exclamation-triangle');
                         cnumber_err.textContent = "Enter your Contact number";
+                    }
+                    else if(!num.test(cnumber.value)){
+                        $('#cnumber').addClass('is-danger');
+                        $('#cnumbericon').addClass('fas fa-exclamation-triangle');
+                        cnumber_err.textContent = "Invalid Contact number";
                     }
                     else if(cnumber.value.length < 11){
                         $('#cnumber').addClass('is-danger');
@@ -637,14 +644,16 @@ if($_COOKIE['role'] == 'Admin'){
                         data:{user_id:user_id},
                         success:function(data)
                         {
-                            swal({
-                                title:data,
-                                icon:'success',
-                                closeOnClickOutside:false,
-                            })
-                            .then((value) => {
-                                dataTable.ajax.reload();
-                            });
+                            if(data == 'Error'){
+                                swal(data,'','error',{
+                                    closeOnClickOutside:false,
+                                });   
+                            }
+                            else{
+                                swal(data,'','success',{
+                                    closeOnClickOutside:false,
+                                });
+                            }
                         }
                     });
                   } else {
