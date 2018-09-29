@@ -37,7 +37,7 @@
 			</div>
 			<div class="has-text-centered copyright has-text-grey">
 				<i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
-				<span>Copyright©2018 www.metrofocus.online All rights reserved</span>
+				<span>Copyright©2018 www.metrofocus.onlin All rights reserved</span>
 			</div>
 			
 		</div>
