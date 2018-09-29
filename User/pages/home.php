@@ -67,10 +67,10 @@
 						</h4>
 					</div>
 				</div>
-				<div class="buttonpulse">
+				<!-- <div class="buttonpulse">
 					<a href="#" id="explore" class="button is-dark is-medium is-rounded is-padded is-ignored">Explore more</a>
 					<span class="button pulse is-medium is-padded is-rounded is-overlay is-ignored"></span>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
@@ -85,7 +85,7 @@
 						<div class="text wow fadeInDown" id="metroSubtitle" data-wow-delay="0.5s">Metro Focus is a business establishment that directly deals with the common needs of a photographer. We provide different kinds and types of accessories and parts that is related to camera. We also offer a repair and upgrade services to your camera.</div>
 					</div>
 					<div class="column">
-						<img class="image-box border-shadow wow fadeInRight" src="" alt="Image">
+						<img style="width: 492px;height: 278px;" class="border-shadow wow fadeInRight" src="assets/img/METRO FOCUS.jpg" alt="Image">
 					</div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 			<div class="section">
 				<div class="columns reverse-in-mobile">
 					<div class="column">
-						<img src="" alt="Image" class="image-box border-shadow wow fadeInLeft">
+						<img style="width: 492px;height: 278px;" src="assets/img/REPAIR.jpg" alt="Image" class="border-shadow wow fadeInLeft">
 					</div>
 					<div class="column feature-box">
 						<div class="title wow fadeInRight">Camera Repair</div>
@@ -113,7 +113,7 @@
 						</div>
 					</div>
 					<div class="column">
-						<img src="" alt="Image" class="image-box border-shadow wow fadeInRight">
+						<img style="width: 492px;height: 278px;" src="assets/img/APPOINTMENT.jpg" alt="Image" class="border-shadow wow fadeInRight">
 					</div>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 			<div class="section">
 				<div class="columns reverse-in-mobile">
 					<div class="column">
-						<img src="" alt="Image" class="image-box border-shadow wow fadeInLeft">
+						<img style="width: 492px;height: 278px;" src="assets/img/RESERVATION.jpg" alt="Image" class="border-shadow wow fadeInLeft">
 					</div>
 					<div class="column feature-box">
 						<div class="title wow fadeInRight">Item Reservation</div>
@@ -144,14 +144,14 @@
 					<div class="text wow fadeInDown" style="height: 100px;" data-wow-delay="0.5s">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 					</div>
-					<img src="" alt="Image" class="image-box border-shadow wow fadeInUp">
+					<img style="width: 300px;height: 300px;" src="assets/img/NoHassle.png" alt="Image" class="image-box border-shadow wow fadeInUp">
 			</div>
 			<div class="column is-centered is-narrow is-two-fifths has-text-centered">
 				<div class="subtitle wow fadeInRight">Cost effective</div>
 					<div class="text wow fadeInDown" style="height: 100px;" data-wow-delay="0.5s">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 					</div>
-					<img src="" alt="Image" class="image-box border-shadow wow fadeInUp">
+					<img style="width: 300px;height: 300px;" src="assets/img/COST EFFECTIVE.png" alt="Image" class="image-box border-shadow wow fadeInUp">
 			</div>
 			</div>
 		</div>
