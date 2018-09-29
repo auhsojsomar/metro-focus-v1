@@ -261,7 +261,20 @@
         }
         ?>
         $('#reserve').click(function(){
-          $('.modal').addClass('is-active');
+          <?php 
+          if(isset($_COOKIE['username'])){
+            ?>
+            $('.modal').addClass('is-active');
+            <?php
+          }
+          else{
+              ?>
+            swal('You need to login first','','warning',{
+              closeOnClickOutside:false,
+            })
+            <?php
+          }          
+          ?>
         });
         $('#modal-close').click(function(){
           $('.modal').removeClass('is-active');

@@ -27,7 +27,7 @@ if(isset($_COOKIE['email'])){
 
     <link rel="stylesheet" href="../css/cameraparts.css">
     <link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
-    <title>MetroFocus | Camera Parts</title>
+    <title>MetroFocus | Camera Accessories</title>
     <section class="hero is-dark">
         <div class="hero-head" style="background: #071425;">
             <div class="container">

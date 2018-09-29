@@ -37,13 +37,13 @@
 			</div>
 			<div class="has-text-centered copyright has-text-grey">
 				<i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
-				<span>Copyright©2018 www.metrofocus.com All rights reserved</span>
+				<span>Copyright©2018 www.metrofocus.online All rights reserved</span>
 			</div>
 			
 		</div>
 		<!-- <a title="Back to top" href="#top" class="to-top"><i class="fas fa-chevron-circle-up"></i></a> -->
 </footer>
-	<a id="elm" title="Back to top" href="#" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
+	<a id="elm" title="Back to top" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
 	<!-- footer end -->
 
 	<script src="js/jquery.min.js"></script>
