@@ -7,7 +7,9 @@ if(isset($_COOKIE['email'])){
   $num = mysqli_fetch_array($sql);
 }
  ?>
-<!-- bulma core css -->
+		<!-- bulma core css -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="icon" href="../../icon.ico">
 	    <link rel="stylesheet" href="../bulma/css/bulma.min.css">
 	    <!-- font awesome css + icons -->
@@ -19,9 +21,7 @@ if(isset($_COOKIE['email'])){
 	    <link rel="stylesheet" href="../css/bulma-calendar.min.css">
 	    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
 	    <link rel="stylesheet" href="../node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
-
 	    <title>MetroFocus | Appointment</title>
-		
 		<section class="hero is-dark">
 		    <div class="hero-head" style="background: #071425;">
 		      <div class="container">
@@ -133,7 +133,7 @@ if(isset($_COOKIE['email'])){
 	                    <h2 class="text" style="font-size: 1.3rem; color: #2a2a2a!important; ">Request an Appointment</h2>
 	                    <!-- <?php echo $message; ?> -->
 	                </div>
-	                <div class="columns is-mobile form-container is-centered">
+	                <div class="columns form-container is-centered">
 	                    <div class="column is-half">
 	                        <form onsubmit="return Validate()" method="POST" name="vform" id="vform" enctype="multipart/form-data"">
 	                            <div class="field">

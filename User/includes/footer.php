@@ -1,6 +1,6 @@
-<footer id="contact">
+<footer id="contact" class="wow fadeIn" data-wow-duration="3s">
 		<div class="container">
-			<div class="columns wow fadeInDown">
+			<div class="columns">
 				<div class="column has-text-centered">
 					<a href="">
 						<h2 class="title has-text-grey">MetroFocus</h2>
@@ -41,18 +41,16 @@
 			</div>
 			
 		</div>
-		<a id="elm" title="Back to top" href="#" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
 		<!-- <a title="Back to top" href="#top" class="to-top"><i class="fas fa-chevron-circle-up"></i></a> -->
 </footer>
+	<a id="elm" title="Back to top" href="#" class="to-top"><i id="jumpicon" class="fal fa-chevron-circle-up"></i></a>
 	<!-- footer end -->
 
-	<script src="./js/jquery.min.js"></script>
-	<script src="./js/navbar-burger.js"></script>
-	<script src="./js/wow.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/navbar-burger.js"></script>
+	<script src="js/wow.min.js"></script>
 	<script>
 		new WOW().init();
-	</script>
-	<script>
 	<?php
 		if(isset($_COOKIE['username'])){
 			if($badge[0] < 1){

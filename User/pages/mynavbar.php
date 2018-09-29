@@ -107,7 +107,7 @@
 						</div>
 					</div>
 				</nav> -->
-<section class="hero is-dark">
+<section class="hero is-dark wow fadeInDown">
     <div class="hero-head" style="background: #071425;">
         <div class="container">
             <nav class="navbar is-dark">

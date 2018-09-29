@@ -16,14 +16,11 @@ if(isset($_COOKIE['email'])){
 	<!-- bulma core css -->
 	<link rel="stylesheet" href="./bulma/css/bulma.min.css">
 	
-	
 	<!-- font awesome css + icons -->
-	<link rel="stylesheet" href="./fontawesome/css/all.css">
-	<link rel="stylesheet" href="./fontawesome/css/fontawesome.css">
+	<link rel="stylesheet" href="fontawesome/css/all.css">
+	<link rel="stylesheet" href="fontawesome/css/fontawesome.css">
 
-	<!-- animate.css animation -->
-	<link rel="stylesheet" href="css/animate.css">
-
-	<link rel="stylesheet" href="./css/home.css">
+	<link rel="stylesheet" href="css/home.css">
 	<link rel="stylesheet" href="node_modules/bulma-extensions/bulma-badge/dist/css/bulma-badge.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
 </head>
