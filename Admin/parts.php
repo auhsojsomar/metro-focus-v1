@@ -19,6 +19,7 @@ if($_COOKIE['role'] == 'Admin'){
             <link rel="stylesheet" href="fontawesome/css/all.css">
             <link rel="stylesheet" href="css/datatables.min.css">
             <link rel="stylesheet" href="css/animate.min.css">
+            <link rel="stylesheet" href="css/bulma-tooltip.min.css">
         </head>
         <body>
             <div class="main-wrapper">
@@ -261,7 +262,7 @@ if($_COOKIE['role'] == 'Admin'){
                                 <div class="column is-half">
                                     <label class="label">Quantity</label>
                                         <div class="control has-icons-right">
-                                            <input min="0" type="number" class="input" id="quantity" name="quantity" placeholder="Quantity">
+                                            <input min="1" type="number" class="input" id="quantity" name="quantity" placeholder="Quantity">
                                                 <span class="icon is-small is-right">
                                                     <i id="quantityicon" class=""></i>
                                                 </span>
@@ -306,7 +307,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <div class="field">
                                 <label class="label"> Load
                                     <div class="control has-icons-right">
-                                        <input type="number" min="0" class="input" id="loadtext" name="loadtext" placeholder="Quantity Ammount">
+                                        <input type="number" min="1" class="input" id="loadtext" name="loadtext" placeholder="Quantity Ammount">
                                             <span class="icon is-small is-right">
                                                 <i id="loadicon" class=""></i>
                                             </span>
@@ -319,6 +320,45 @@ if($_COOKIE['role'] == 'Admin'){
                         <button class="button is-success" id="load" type="submit" name="bntLoad">Load</button>
                         <button class="button" id="loadcancel" type="button">Cancel</button>
                         <input type="hidden" name="user_id2" id="user_id2"></input>
+                    </form>
+                    </footer>
+                </div>
+            </div>
+            <div class="modal" id="defectmodal"> 
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <h1 class="modal-card-title" id="modaltitle">Defect</h1>
+                    </header>
+                    <section class="modal-card-body">
+                        <form method="POST" name="vform3" id="vform3" onsubmit="return Defect();">
+                            <div class="field">
+                                <label class="label">Quantity
+                                    <div class="control has-icons-right">
+                                        <input type="number" min="1" class="input" id="defect" name="defect" placeholder="Quantity Ammount">
+                                            <span class="icon is-small is-right">
+                                                <i id="defecticon" class=""></i>
+                                            </span>
+                                            <p class="help is-danger" id="defectmessage"></p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label class="label">Problem
+                                    <div class="control has-right-icon">
+                                        <textarea type="text" class="textarea" maxlength="200" name="problem" id="problem" placeholder="Problem"></textarea>
+                                        <span class="icon is-small is-right">
+                                            <i id="problemicon" class=""></i>
+                                        </span>
+                                        <p class="help is-danger" id="problemmessage"></p>
+                                    </div>
+                                </label>
+                            </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-success" id="btnDefect" type="submit" name="bntDefect">Load</button>
+                        <button class="button" id="defectcancel" type="button">Cancel</button>
+                        <input type="hidden" name="user_id3" id="user_id3"></input>
                     </form>
                     </footer>
                 </div>
@@ -366,6 +406,9 @@ if($_COOKIE['role'] == 'Admin'){
                 $('#loadcancel').click(function(){
                     $('#loadmodal').removeClass('is-active');
 
+                });
+                $('#defectcancel').click(function(){
+                    $('#defectmodal').removeClass('is-active');
                 });
                 $(document).on('click','button[name="load"]',function(){
                     $('#loadtext').val('');
@@ -440,6 +483,9 @@ if($_COOKIE['role'] == 'Admin'){
                       }
                     });
                 });
+                $(document).on('click','button[name="defect"]',function(){
+                    $('#defectmodal').addClass('is-active');
+                });
                 var category = document.forms['vform']['category'];
                 var brand = document.forms['vform']['brand'];
                 var productname = document.forms['vform']['name'];
@@ -452,6 +498,10 @@ if($_COOKIE['role'] == 'Admin'){
                 var description_error = document.getElementById('descriptionmessage');
                 var load = document.forms['vform2']['loadtext'];
                 var load_error = document.getElementById('loadmessage');
+
+                function Defect(){
+                    return false;
+                }
 
                 function Load(){
                     if(load.value == 0){

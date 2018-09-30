@@ -43,7 +43,7 @@ if($_COOKIE['role'] == 'Admin'){
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li style="margin-left: 20px;">
-                                        <a href="#">
+                                        <a href="./">
                                             <span class="icon is-small">
                                                 <i class="fal fa-home" aria-hidden="true"></i>
                                             </span>

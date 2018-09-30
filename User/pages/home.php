@@ -144,14 +144,14 @@
 					<div class="text wow fadeInDown" style="height: 100px;" data-wow-delay="0.5s">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 					</div>
-					<img style="width: 300px;height: 300px;" src="assets/img/NoHassle.png" alt="Image" class="image-box border-shadow wow fadeInUp">
+					<img style="width: 300px;height: 300px;" src="assets/img/NoHassle.png" alt="Image" class="image-box border-shadow wow fadeInLeft"data-wow-delay="1s">
 			</div>
 			<div class="column is-centered is-narrow is-two-fifths has-text-centered">
 				<div class="subtitle wow fadeInRight">Cost effective</div>
 					<div class="text wow fadeInDown" style="height: 100px;" data-wow-delay="0.5s">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 					</div>
-					<img style="width: 300px;height: 300px;" src="assets/img/COST EFFECTIVE.png" alt="Image" class="image-box border-shadow wow fadeInUp">
+					<img style="width: 300px;height: 300px;" src="assets/img/COST EFFECTIVE.png" alt="Image" class="image-box border-shadow wow fadeInRight" data-wow-delay="1s">
 			</div>
 			</div>
 		</div>

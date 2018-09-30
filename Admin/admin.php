@@ -370,7 +370,7 @@ if($_COOKIE['role'] == 'Admin'){
                         else if(data == "Exist"){
                             $('#email').addClass('is-danger');
                             $('#emailicon').addClass('fas fa-exclamation-triangle');
-                            $('#emailmessage').html('Email is already used');
+                            $('#emailmessage').html('Username is already used');
                         }
                         else if(regex.test(email.value)){
                             $('#email').removeClass('is-danger');
@@ -380,7 +380,7 @@ if($_COOKIE['role'] == 'Admin'){
                         else {
                             $('#email').addClass('is-danger');
                             $('#emailicon').addClass('fas fa-exclamation-triangle');
-                            $('#emailmessage').html('Invalid Email');
+                            $('#emailmessage').html('Invalid username');
                         }
                     });
                 }
@@ -435,7 +435,7 @@ if($_COOKIE['role'] == 'Admin'){
                             $('#lnameicon').addClass('fas fa-exclamation-triangle');
                             lname_err.textContent = "Invalid Format";
                         }
-                        else if((fname.value != "") && (lname.value != "") && (email.value != "") && (cnumber.value != "") && (password.value != "") && (cpassword.value != "") && !space.test(fname.value) && !dot.test(fname.value) && !space.test(lname.value) && !dot.test(lname.value) && regex.test(email.value) && exist != "Exist" && password.value.length > 7 && cpassword.value.length > 7 && cnumber.value.length > 10 && password.value == cpassword.value){
+                        else if((fname.value != "") && (lname.value != "") && (email.value != "") && (cnumber.value != "") && (password.value != "") && (cpassword.value != "") && !space.test(fname.value) && !dot.test(fname.value) && !space.test(lname.value) && !dot.test(lname.value) && regex.test(email.value) && exist != "Exist" && password.value.length > 7 && cpassword.value.length > 7 && cnumber.value.length > 10 && password.value == cpassword.value && num.test(cnumber.value)){
                             var form = $('#vform').serialize();
                             $.ajax({
                                 data:form,
@@ -470,7 +470,7 @@ if($_COOKIE['role'] == 'Admin'){
                         if(password.value.length > 0 && password.value.length < 8){
                             passwordvalid();
                         }
-                        else if((fname.value != "") && (lname.value != "") && (email.value != "") && (cnumber.value != "") && !space.test(fname.value) && !dot.test(fname.value) && !space.test(lname.value) && !dot.test(lname.value) && regex.test(email.value) && cnumber.value.length > 10 && password.value == cpassword.value){
+                        else if((fname.value != "") && (lname.value != "") && (email.value != "") && (cnumber.value != "") && !space.test(fname.value) && !dot.test(fname.value) && !space.test(lname.value) && !dot.test(lname.value) && regex.test(email.value) && cnumber.value.length > 10 && password.value == cpassword.value && num.test(cnumber.value)){
                             var form = $('#vform').serialize();
                             $.ajax({
                                 data:form,

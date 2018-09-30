@@ -23,7 +23,7 @@
 		echo "Success";
 	}
 	else{
-		echo $row[0];
+		echo $_POST['email'];
 	}
 	$user = $_COOKIE['email'];
 	date_default_timezone_set('Asia/Manila');
